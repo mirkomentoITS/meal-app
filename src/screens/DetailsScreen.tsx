@@ -1,15 +1,30 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
-import { fruits } from '../data/fruitData';
+
+import { loadPlateById } from '../services/Plate';
 
 
 export default function DetailsScreen({ route }: any) {
   
   const navigation = useNavigation<any>();
-
   const id = route.params?.id;
-  const fruit = fruits.find((p) => p.id === id);
+  const [plate, setPlate] = React.useState<any>(null);
+
+
+  async function getPlate () {
+    try {
+      const data = await loadPlateById(id);
+      setPlate(data);
+    } catch {
+      setPlate(null);
+    }
+  };
+
+
+  React.useEffect(() => {
+    getPlate();
+  }, [id]);
 
 
   if (!id) {
@@ -20,19 +35,22 @@ export default function DetailsScreen({ route }: any) {
     );
   }
 
-  if (!fruit) {
+  if (!plate) {
     return (
       <View style={styles.container}>
         <Text>Product not found</Text>
       </View>
     );
   }
+
+  // mettere messaggi di errore
   
 
   return (
     <View style={styles.container}>
 
-      <Text style={styles.textProd}>{fruit?.name}</Text>
+       {/*AGGIUNGERE IMMAGINE E SISTEMARE SCHERMATA*/}
+      <Text style={styles.textProd}>{plate.strMeal}</Text>
 
       <Pressable style={styles.button}
         onPress={() => navigation.goBack()}>

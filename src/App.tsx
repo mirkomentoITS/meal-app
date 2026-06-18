@@ -23,6 +23,7 @@ const linking = {
   }
 }
 
+// screen solo della parte di codice del lab
 
 export default function App() {
 

@@ -18,7 +18,7 @@ function PlateCard ({ plate }: { plate: Plate }) {
 
   return (
     <Pressable style={styles.row} 
-      onPress={() => navigation.navigate("Details", { id: plate.idMeal })}>
+      onPress={() => navigation.navigate("Details", { id: plate.idMeal  })}>
       <Image style={styles.image} source={{ uri: plate.strMealThumb }}  />
       <Text style={styles.textMeal}>{plate.strMeal}</Text>
     </Pressable>
@@ -35,7 +35,7 @@ export default function HomeScreen() {
   async function load() {
     setStatus("loading");
     try {
-      const data = await loadPlates('s');    
+      const data = await loadPlates();    
       setPlateData(data)                  
       setStatus("success");             
     } 
