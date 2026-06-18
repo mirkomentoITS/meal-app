@@ -1,23 +1,24 @@
 import React from 'react';
 import { View, Text, Pressable, FlatList, StyleSheet} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
-import { fruits } from '../data/fruitData';
+import { useNavigation } from '@react-navigation/native';
+
+import { loadPlates } from '../services/Plate';
 
 
-interface Fruit {
-  id: string;
-  name: string;
+interface Plate {
+  idMeal: string;
+  strMeal: string;
 };
 
 
-function Row({ item }: { item: Fruit }) {
+function Row({ item }: { item: Plate }) {
 
   const navigation = useNavigation<any>();
 
   return (
     <Pressable style={styles.row} 
-      onPress={() => navigation.navigate("Details", { id: item.id })}>
-      <Text style={styles.text}>{item.name}</Text>
+      onPress={() => navigation.navigate("Details", { id: item.idMeal })}>
+      <Text style={styles.text}>{item.strMeal}</Text>
     </Pressable>
   );
 }
@@ -25,12 +26,33 @@ function Row({ item }: { item: Fruit }) {
 
 export default function HomeScreen() {
 
+  const [plateData, setPlateData] = React.useState<Plate[]>([]);
+  const [status, setStatus] = React.useState("idle"); 
+
+
+  async function load() {
+    setStatus("loading");
+    try {
+      const data = await loadPlates();    
+      setPlateData(data)                  
+      setStatus("success");             
+    } 
+    catch {
+      setStatus("error");
+    }
+   }
+
+  React.useEffect(() => {
+    load();
+  }, []);
+
+
   return (
     <View style={styles.container}>
     
       <FlatList
-        data={fruits}
-        keyExtractor={(item) => item.id}
+        data={plateData}
+        keyExtractor={(item) => item.idMeal}
         renderItem={({ item }) => <Row item={item} />}
         contentContainerStyle={styles.list}
       />
