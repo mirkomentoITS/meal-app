@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, FlatList, StyleSheet} from 'react-native';
+import { View, Text, Pressable, Image, FlatList, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { loadPlates } from '../services/Plate';
@@ -8,17 +8,19 @@ import { loadPlates } from '../services/Plate';
 interface Plate {
   idMeal: string;
   strMeal: string;
+  strMealThumb: string;
 };
 
 
-function Row({ item }: { item: Plate }) {
+function PlateCard ({ plate }: { plate: Plate }) {
 
   const navigation = useNavigation<any>();
 
   return (
     <Pressable style={styles.row} 
-      onPress={() => navigation.navigate("Details", { id: item.idMeal })}>
-      <Text style={styles.text}>{item.strMeal}</Text>
+      onPress={() => navigation.navigate("Details", { id: plate.idMeal })}>
+      <Image style={styles.image} source={{ uri: plate.strMealThumb }}  />
+      <Text style={styles.textMeal}>{plate.strMeal}</Text>
     </Pressable>
   );
 }
@@ -33,7 +35,7 @@ export default function HomeScreen() {
   async function load() {
     setStatus("loading");
     try {
-      const data = await loadPlates();    
+      const data = await loadPlates('s');    
       setPlateData(data)                  
       setStatus("success");             
     } 
@@ -49,11 +51,13 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+
+      <Text style={styles.title}>Piatti italiani</Text>
     
       <FlatList
         data={plateData}
-        keyExtractor={(item) => item.idMeal}
-        renderItem={({ item }) => <Row item={item} />}
+        keyExtractor={(plate) => plate.idMeal}
+        renderItem={({ item : plate }) => <PlateCard plate={plate} />}
         contentContainerStyle={styles.list}
       />
     
@@ -66,21 +70,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#882323",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+    color: "#ffffff", 
   },
   list: {
     paddingBottom: 16,
   },
   row: {
-    height: 40,
-    padding: 5,
-    marginBottom: 8,
-    justifyContent: "center",
-    backgroundColor: "#b7e2f0",
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: "#000",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#8d8d8d94", 
   },
-  text: {
-    fontWeight: "600",
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  textMeal: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#ffffff", 
+    flex: 1,
   },
 });
