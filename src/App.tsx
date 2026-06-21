@@ -22,7 +22,7 @@ const linking = {
     }
   }
 }
-
+// bottom tabs navigation
 // screen solo della parte di codice del lab
 
 export default function App() {

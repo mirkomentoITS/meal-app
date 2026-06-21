@@ -40,7 +40,7 @@ export default function HomeScreen() {
       setStatus("success");             
     } 
     catch {
-      setStatus("error");
+      setStatus("error");          // gestire stati <text ...
     }
    }
 
