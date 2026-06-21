@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Pressable, Image, FlatList, StyleSheet} from 'react-native';
+import { View, ActivityIndicator, Text, Pressable, Image, FlatList, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { loadPlates } from '../services/Plate';
+import { loadPlates } from '../services/plate';
 
 
 interface Plate {
@@ -14,7 +14,7 @@ interface Plate {
 
 function PlateCard ({ plate }: { plate: Plate }) {
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<any>();           // fai componente
 
   return (
     <Pressable style={styles.row} 
@@ -37,16 +37,41 @@ export default function HomeScreen() {
     try {
       const data = await loadPlates();    
       setPlateData(data)                  
-      setStatus("success");             
+      setTimeout(() => setStatus("success"), 1000);    //elimina timeout
     } 
     catch {
-      setStatus("error");          // gestire stati <text ...
+      setStatus("error");          
     }
    }
 
   React.useEffect(() => {
     load();
   }, []);
+
+
+  if (status === "loading") {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Piatti italiani</Text>
+        <ActivityIndicator style={styles.indicator}
+          size="large" 
+          color="#ffffff" 
+        />
+      </View>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Piatti italiani</Text>
+        <Text style={styles.error}>Errore caricamento !</Text>
+        <Pressable style={styles.retryButton} onPress={() => load()}>
+          <Text style={styles.retryText}>Riprova</Text>
+        </Pressable>
+      </View>
+    );
+  }
 
 
   return (
@@ -72,6 +97,9 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#882323",
   },
+  indicator: {
+    marginTop: 250,
+  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -95,9 +123,28 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   textMeal: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "400",
     color: "#ffffff", 
     flex: 1,
+  },
+  retryButton: {
+    width: 200,
+    alignSelf: "center",
+    marginTop: 16,
+    padding: 10,
+    backgroundColor: "#f66d38",
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  retryText: {
+    color: "#ffffff",
+    fontWeight: "600",
+  },
+  error: {
+    marginTop: 50,
+    color: "#ffffff",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
