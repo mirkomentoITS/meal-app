@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: "#c92a2a",
+    backgroundColor: "#f66d38",
     borderRadius: 8,
     alignItems: "center",
   },
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   retryButton: {
     marginTop: 16,
     padding: 10,
-    backgroundColor: "#c92a2a",
+    backgroundColor: "#f66d38",
     borderRadius: 8,
     alignItems: "center",
   },

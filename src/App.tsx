@@ -18,7 +18,6 @@ const linking = {
       Profile: "profile",
       Home: "home",
       Details: "details/:id",
-
     }
   }
 }
@@ -30,10 +29,19 @@ export default function App() {
   return (
     <NavigationContainer linking={linking}>
       <Stack.Navigator>
-        {/*<Stack.Screen name="Login" component={LoginScreen} />*/}
-        {/*<Stack.Screen name="Profile" component={ProfileScreen} />*/}
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+        />
+        <Stack.Screen 
+          name="Details" 
+          component={DetailsScreen} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
