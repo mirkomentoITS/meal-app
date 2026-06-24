@@ -10,8 +10,8 @@ export default function DetailsScreen({ route }: any) {
   const navigation = useNavigation<any>();
   const id = route.params?.id;
 
-  const [plate, setPlate] = React.useState<any>(null);
   const [status, setStatus] = React.useState("idle");
+  const [plate, setPlate] = React.useState<any>(null);
 
 
   async function getPlate () {
@@ -19,7 +19,7 @@ export default function DetailsScreen({ route }: any) {
     try {
       const data = await loadPlateById(id);
       setPlate(data);
-      setTimeout(() => setStatus("success"), 1000);    //elimina timeout
+      setTimeout(() => setStatus("success"), 1000);
     } 
     catch {
       setPlate(null);
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
   photo: {
     width: "100%",
     height: 250,
+    marginBottom: 20,    
     borderRadius: 12,
-    marginBottom: 20,
   },
   infoTitle: {
     margin: 3,
@@ -130,25 +130,25 @@ const styles = StyleSheet.create({
     color: "#fab005"
   },
   instructionTitle: {
+    marginTop: 16,
+    marginBottom: 8,    
     fontSize: 18,
     fontWeight: "bold",
     color: "#ffffff",
-    marginTop: 16,
-    marginBottom: 8,
   },
   instructionText: {
+    marginBottom: 24,    
     fontSize: 14,
     color: "#f0f0f0",
     lineHeight: 22,
-    marginBottom: 24,
   },
   button: {
+    alignItems: "center",    
     marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 16,
     backgroundColor: "#f66d38",
     borderRadius: 8,
-    alignItems: "center",
   },
   buttonText: {
     color: "#ffffff",
@@ -156,11 +156,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   retryButton: {
+    alignItems: "center",    
     marginTop: 16,
     padding: 10,
     backgroundColor: "#f66d38",
     borderRadius: 8,
-    alignItems: "center",
   },
   retryText: {
     color: "#ffffff",

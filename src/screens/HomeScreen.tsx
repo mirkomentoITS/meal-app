@@ -1,43 +1,23 @@
 import React from 'react';
-import { View, ActivityIndicator, Text, Pressable, Image, FlatList, StyleSheet} from 'react-native';
+import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
-
-
-interface Plate {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-};
-
-
-function PlateCard ({ plate }: { plate: Plate }) {
-
-  const navigation = useNavigation<any>();           // fai componente
-
-  return (
-    <Pressable style={styles.row} 
-      onPress={() => navigation.navigate("Details", { id: plate.idMeal  })}>
-      <Image style={styles.image} source={{ uri: plate.strMealThumb }}  />
-      <Text style={styles.textMeal}>{plate.strMeal}</Text>
-    </Pressable>
-  );
-}
 
 
 export default function HomeScreen() {
 
-  const [plateData, setPlateData] = React.useState<Plate[]>([]);
   const [status, setStatus] = React.useState("idle"); 
+  const [plateData, setPlateData] = React.useState<Plate[]>([]);
 
 
-  async function load() {
+  async function getPlates() {
     setStatus("loading");
     try {
       const data = await loadPlates();    
       setPlateData(data)                  
-      setTimeout(() => setStatus("success"), 1000);    //elimina timeout
+      setTimeout(() => setStatus("success"), 1000);
     } 
     catch {
       setStatus("error");          
@@ -45,7 +25,7 @@ export default function HomeScreen() {
    }
 
   React.useEffect(() => {
-    load();
+    getPlates();
   }, []);
 
 
@@ -66,7 +46,7 @@ export default function HomeScreen() {
       <View style={styles.container}>
         <Text style={styles.title}>Piatti italiani</Text>
         <Text style={styles.error}>Errore caricamento !</Text>
-        <Pressable style={styles.retryButton} onPress={() => load()}>
+        <Pressable style={styles.retryButton} onPress={() => getPlates()}>
           <Text style={styles.retryText}>Riprova</Text>
         </Pressable>
       </View>
@@ -101,41 +81,22 @@ const styles = StyleSheet.create({
     marginTop: 250,
   },
   title: {
+    marginBottom: 16,    
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 16,
     color: "#ffffff", 
   },
   list: {
     paddingBottom: 16,
   },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#8d8d8d94", 
-  },
-  image: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-    marginRight: 12,
-  },
-  textMeal: {
-    fontSize: 18,
-    fontWeight: "400",
-    color: "#ffffff", 
-    flex: 1,
-  },
   retryButton: {
     width: 200,
     alignSelf: "center",
+    alignItems: "center",    
     marginTop: 16,
     padding: 10,
     backgroundColor: "#f66d38",
     borderRadius: 8,
-    alignItems: "center",
   },
   retryText: {
     color: "#ffffff",

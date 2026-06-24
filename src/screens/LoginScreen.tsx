@@ -14,7 +14,7 @@ export default function LoginScreen() {
   const [email, setEmail] = React.useState(""); 
   const [password, setPassword] = React.useState("");
   const [submit, setSubmit] = React.useState(false);
-  const [status, setStatus] = React.useState("")
+  const [status, setStatus] = React.useState("");
   
   const emailOK = email && email.includes("@");
   const passOK = password && !password.includes("password");
@@ -54,8 +54,8 @@ export default function LoginScreen() {
 
           <View style={styles.imageWrapper}>
             <Image
-              style={styles.photo}   // metti uri locale
-              source={{ uri: "https://www.traveldailymedia.com/assets/2023/07/shutterstock_1435375889.jpg" }}
+              style={styles.photo}   
+              source={require('../assets/login-bg.jpg')}
             />
           </View>
 
