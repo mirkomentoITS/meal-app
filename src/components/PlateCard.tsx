@@ -10,25 +10,29 @@ export interface Plate {
   strMealThumb: string;
 };
 
+interface PlateCardProps {
+  plate: Plate;
+  onPress: () => void;
+  isFavorite: boolean;
+  onToggleFav: () => void;
+}
 
-export function PlateCard ({ plate }: { plate: Plate }) {
 
-  const navigation = useNavigation<any>(); 
-  const [toggleFavorite, setToggleFavorite] = React.useState(false)
+export function PlateCard ({ plate, onPress, isFavorite, onToggleFav }: PlateCardProps) {
 
   return (
     <View style={styles.row}> 
 
       <Pressable style={styles.item} 
-        onPress={() => navigation.navigate("Details", { id: plate.idMeal  })}>
+        onPress={onPress}>
         <Image style={styles.image} source={{ uri: plate.strMealThumb }} />
         <Text style={styles.textMeal}>{plate.strMeal}</Text>
       </Pressable>
 
       <Pressable style={styles.like}
-        onPress={() => setToggleFavorite(prev => !prev)}>
+        onPress={onToggleFav}>
         <MaterialIcons
-          name={toggleFavorite ? "favorite" : "favorite-border"} 
+          name={isFavorite ? "favorite" : "favorite-border"} 
           size={35}
           color="#fff"
         />

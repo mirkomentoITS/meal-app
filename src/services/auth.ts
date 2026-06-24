@@ -19,6 +19,7 @@ export const MOCK_USERS = [
   },
 ];
 
+
 export function validateLogin(email: string, password: string) {
   return MOCK_USERS.find(
     (u) => u.email === email.trim() && u.password === password,

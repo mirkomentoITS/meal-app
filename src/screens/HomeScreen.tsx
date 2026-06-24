@@ -4,12 +4,23 @@ import { useNavigation } from '@react-navigation/native';
 
 import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
+import { loadFavoriteIds, saveFavoriteIds } from '../services/favorite';
+
 
 
 export default function HomeScreen() {
 
   const [status, setStatus] = React.useState("idle"); 
   const [plateData, setPlateData] = React.useState<Plate[]>([]);
+
+  const navigation = useNavigation<any>(); 
+  const [favorites, setFavorites] = React.useState<string[]>([]);
+
+
+  React.useEffect(() => {
+    getPlates();
+    loadFavoriteIds().then(setFavorites);
+  }, []);
 
 
   async function getPlates() {
@@ -54,18 +65,35 @@ export default function HomeScreen() {
   }
 
 
+  function toggleFavorite(idMeal: string) {
+    setFavorites((current) => {
+      const next = current.includes(idMeal)
+        ? current.filter(id => id !== idMeal)
+        : [...current, idMeal];
+
+      saveFavoriteIds(next);
+      return next;
+    });
+  }
+
+
   return (
     <View style={styles.container}>
 
       <Text style={styles.title}>Piatti italiani</Text>
     
-      <FlatList
+      <FlatList contentContainerStyle={styles.list}
         data={plateData}
         keyExtractor={(plate) => plate.idMeal}
-        renderItem={({ item : plate }) => <PlateCard plate={plate} />}
-        contentContainerStyle={styles.list}
-      />
-    
+        renderItem={({ item : plate }) => 
+          <PlateCard 
+            plate={plate} 
+            isFavorite={favorites.includes(plate.idMeal)}
+            onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
+            onToggleFav={() => toggleFavorite(plate.idMeal)}>
+          </PlateCard> }>
+      </FlatList>
+  
     </View>
   );
 }
