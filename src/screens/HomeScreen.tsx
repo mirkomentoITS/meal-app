@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
@@ -8,12 +7,11 @@ import { loadFavoriteIds, saveFavoriteIds } from '../services/favorite';
 
 
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: any) {
 
   const [status, setStatus] = React.useState("idle"); 
   const [plateData, setPlateData] = React.useState<Plate[]>([]);
 
-  const navigation = useNavigation<any>(); 
   const [favorites, setFavorites] = React.useState<string[]>([]);
 
 
@@ -34,10 +32,6 @@ export default function HomeScreen() {
       setStatus("error");          
     }
    }
-
-  React.useEffect(() => {
-    getPlates();
-  }, []);
 
 
   if (status === "loading") {

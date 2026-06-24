@@ -1,13 +1,11 @@
 import React from 'react';
 import { View, ScrollView, ActivityIndicator, Text, Image, Pressable, StyleSheet} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
 
 import { loadPlateById } from '../services/plate';
 
 
-export default function DetailsScreen({ route }: any) {
+export default function DetailsScreen({ route, navigation }: any) {
 
-  const navigation = useNavigation<any>();
   const id = route.params?.id;
 
   const [status, setStatus] = React.useState("idle");

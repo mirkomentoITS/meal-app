@@ -98,7 +98,7 @@ export default function LoginScreen() {
             </Pressable>
  
             {submit && status === "loading" && 
-              <Text style={styles.loadingText}>Loaing...</Text>}
+              <Text style={styles.loadingText}>Loading...</Text>}
 
             {submit && status === "success" && 
               <Text style={styles.successText}>Login succesful ✔</Text>}
