@@ -1,15 +1,12 @@
 import React from 'react';
 import { View, KeyboardAvoidingView, ScrollView, Text, TextInput, Pressable, Image, Platform, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { validateLogin } from '../services/auth';
 
 
-export default function LoginScreen() {
-
-  const navigation = useNavigation<any>();
+export default function LoginScreen({ navigation }: any) {
   
   const [email, setEmail] = React.useState(""); 
   const [password, setPassword] = React.useState("");
@@ -28,8 +25,12 @@ export default function LoginScreen() {
 
     setStatus("loading");
 
+
+    const user = validateLogin(email, password);
+    console.log(user);
+
     setTimeout(() => {   
-      if (validateLogin(email, password)) {
+      if (user) {
         setStatus("success");
         navigation.navigate("Home");
       } 
@@ -94,7 +95,7 @@ export default function LoginScreen() {
             <Pressable 
               style={formOK ? styles.btn : styles.btnDisabled}
               onPress={onLog}>
-              <Text style={styles.buttonText}>SUBMIT</Text>
+              <Text style={styles.buttonText}>LOGIN</Text>
             </Pressable>
  
             {submit && status === "loading" && 

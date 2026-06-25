@@ -60,7 +60,7 @@ export default function DetailsScreen({ route, navigation }: any) {
       </View>
     );
   }
-
+      // metti preferiti
 
   return (
     <SafeAreaProvider>
@@ -72,6 +72,8 @@ export default function DetailsScreen({ route, navigation }: any) {
           <Image style={styles.photo}
             source={{ uri: plate.strMealThumb }}  
           />
+
+
 
           <Text style={styles.infoTitle}>Category : 
             <Text style={styles.infoText}>

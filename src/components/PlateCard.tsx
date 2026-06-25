@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Pressable, Image, StyleSheet} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 

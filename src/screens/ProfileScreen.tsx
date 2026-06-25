@@ -8,7 +8,7 @@ function Avatar ({ uri }: { uri: string }) {
   const [failed, setFailed] = React.useState(false);
 
   return (
-    <View style={styles.avatarWrap}>
+    <View style={styles.avatar}>
 
       { failed ? ( 
         <Text style={{ textAlign: "center", lineHeight: 64 }}>?</Text>
@@ -25,22 +25,17 @@ function Avatar ({ uri }: { uri: string }) {
 }
 
 
-export default function App() {
+export default function ProfileScreen() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView  style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
        
           <Avatar uri="https://picsum.photos/64"/>
 
-          <Text style={styles.title}>Profile</Text>
-          <Text>Clean layout with basic components</Text>  
-
-          <Pressable 
-            onPress={() => {console.log("you press btn")}} 
-            style={({pressed}) => [styles.button, pressed && styles.buttonClicked]}>
-            <Text style={styles.buttonText}>Tap</Text>
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>LOGUT</Text>
           </Pressable>
 
         </View>
@@ -56,24 +51,28 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#882323",
   },
-  title: { fontSize: 20, fontWeight: "600" },
-  avatarWrap: {
+  avatar: {
     width: 64,
     height: 64,
+    marginBottom: 20,
     borderRadius: 32,
     overflow: "hidden",
+    borderColor: "#fff",
     borderWidth: 1,
   },
   button: {
-    alignSelf: "flex-start",
-    paddingVertical: 10,
+    alignItems: "center",    
+    marginTop: 20,
+    paddingVertical: 12,
     paddingHorizontal: 16,
+    backgroundColor: "#ff1302",
     borderWidth: 1,
     borderRadius: 8,
-    backgroundColor: "#f0f0f0",
+    borderColor: "#fff"
   },
-  buttonClicked : {
-    backgroundColor: "grey"
+  buttonText: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "600",
   },
-  buttonText: { fontWeight: "600" },
 });
