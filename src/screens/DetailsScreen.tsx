@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView, ActivityIndicator, Text, Image, Pressable, StyleSheet} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { loadPlateById } from '../services/plate';
 
@@ -62,35 +63,41 @@ export default function DetailsScreen({ route, navigation }: any) {
 
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaProvider>
+      <SafeAreaView  style={{ flex: 1 }}>
+        <ScrollView style={styles.container}>
 
-      <Text style={styles.name}>{plate.strMeal}</Text>
+          <Text style={styles.name}>{plate.strMeal}</Text>
 
-      <Image style={styles.photo}
-        source={{ uri: plate.strMealThumb }}  
-      />
+          <Image style={styles.photo}
+            source={{ uri: plate.strMealThumb }}  
+          />
 
-      <Text style={styles.infoTitle}>Category : 
-        <Text style={styles.infoText}>
-          {plate.strCategory}
-        </Text>
-      </Text>
+          <Text style={styles.infoTitle}>Category : 
+            <Text style={styles.infoText}>
+              {plate.strCategory}
+            </Text>
+          </Text>
 
-      <Text style={styles.infoTitle}>Area : 
-        <Text style={styles.infoText}>
-          {plate.strArea}
-        </Text>
-      </Text>
+          <Text style={styles.infoTitle}>Area : 
+            <Text style={styles.infoText}>
+              {plate.strArea}
+            </Text>
+          </Text>
 
-      <Text style={styles.instructionTitle}>Istruzioni</Text>
-      <Text style={styles.instructionText}>{plate.strInstructions}</Text>
+          <Text style={styles.instructionTitle}>Istruzioni</Text>
+          <Text style={styles.instructionText}>{plate.strInstructions}</Text>
 
-      <Pressable style={styles.button}
-        onPress={() => navigation.goBack()}>
-        <Text style={styles.buttonText}>Go back</Text>
-      </Pressable>
+          <Pressable style={styles.button}
+            onPress={() => navigation.goBack()}>
+            <Text style={styles.buttonText}>Go back</Text>
+          </Pressable>
 
-    </ScrollView>
+
+      
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

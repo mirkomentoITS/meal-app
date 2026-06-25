@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -29,8 +29,8 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex : 1 }}>
-        <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
+      <SafeAreaView  style={{ flex: 1 }}>
+        <View style={styles.container}>
        
           <Avatar uri="https://picsum.photos/64"/>
 
@@ -43,7 +43,7 @@ export default function App() {
             <Text style={styles.buttonText}>Tap</Text>
           </Pressable>
 
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -51,6 +51,11 @@ export default function App() {
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#882323",
+  },
   title: { fontSize: 20, fontWeight: "600" },
   avatarWrap: {
     width: 64,

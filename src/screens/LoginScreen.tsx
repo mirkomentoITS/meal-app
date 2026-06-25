@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, ScrollView, Text, TextInput, Pressable, Image, Platform, StyleSheet} from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView, Text, TextInput, Pressable, Image, Platform, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';

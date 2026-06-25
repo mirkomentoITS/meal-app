@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
 import { loadFavoriteIds, saveFavoriteIds } from '../services/favorite';
-
 
 
 export default function HomeScreen({ navigation }: any) {
@@ -72,23 +72,27 @@ export default function HomeScreen({ navigation }: any) {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
 
-      <Text style={styles.title}>Piatti italiani</Text>
+          <Text style={styles.title}>Piatti italiani</Text>
     
-      <FlatList contentContainerStyle={styles.list}
-        data={plateData}
-        keyExtractor={(plate) => plate.idMeal}
-        renderItem={({ item : plate }) => 
-          <PlateCard 
-            plate={plate} 
-            isFavorite={favorites.includes(plate.idMeal)}
-            onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
-            onToggleFav={() => toggleFavorite(plate.idMeal)}>
-          </PlateCard> }>
-      </FlatList>
+          <FlatList contentContainerStyle={styles.list}
+            data={plateData}
+            keyExtractor={(plate) => plate.idMeal}
+            renderItem={({ item : plate }) => 
+              <PlateCard 
+                plate={plate} 
+                isFavorite={favorites.includes(plate.idMeal)}
+                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
+                onToggleFav={() => toggleFavorite(plate.idMeal)}>
+              </PlateCard> }>
+          </FlatList>
   
-    </View>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
