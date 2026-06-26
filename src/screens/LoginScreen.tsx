@@ -1,13 +1,14 @@
 import React from 'react';
+
 import { View, KeyboardAvoidingView, ScrollView, Text, TextInput, Pressable, Image, Platform, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { validateLogin } from '../services/auth';
+import { AuthContext } from '../context/AuthContext';
 
 
 export default function LoginScreen({ navigation }: any) {
-  
+
   const [email, setEmail] = React.useState(""); 
   const [password, setPassword] = React.useState("");
   const [submit, setSubmit] = React.useState(false);
@@ -16,21 +17,21 @@ export default function LoginScreen({ navigation }: any) {
   const emailOK = email && email.includes("@");
   const passOK = password && !password.includes("password");
   const formOK = emailOK && passOK;
-  
 
-  function onLog() {
+  const { login } = React.useContext(AuthContext);
+
+
+  function onLogin() {
 
     setSubmit(true);
     if (!formOK) return;
 
     setStatus("loading");
 
-
-    const user = validateLogin(email, password);
-    console.log(user);
+    const userOK = login(email, password);
 
     setTimeout(() => {   
-      if (user) {
+      if (userOK) {
         setStatus("success");
         navigation.navigate("Home");
       } 
@@ -94,7 +95,7 @@ export default function LoginScreen({ navigation }: any) {
 
             <Pressable 
               style={formOK ? styles.btn : styles.btnDisabled}
-              onPress={onLog}>
+              onPress={onLogin}>
               <Text style={styles.buttonText}>LOGIN</Text>
             </Pressable>
  

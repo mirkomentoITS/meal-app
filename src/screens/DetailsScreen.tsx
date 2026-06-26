@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { View, ScrollView, ActivityIndicator, Text, Image, Pressable, StyleSheet} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -60,7 +61,8 @@ export default function DetailsScreen({ route, navigation }: any) {
       </View>
     );
   }
-      // metti preferiti
+
+  // metti preferiti
 
   return (
     <SafeAreaProvider>
@@ -72,8 +74,6 @@ export default function DetailsScreen({ route, navigation }: any) {
           <Image style={styles.photo}
             source={{ uri: plate.strMealThumb }}  
           />
-
-
 
           <Text style={styles.infoTitle}>Category : 
             <Text style={styles.infoText}>
@@ -94,8 +94,6 @@ export default function DetailsScreen({ route, navigation }: any) {
             onPress={() => navigation.goBack()}>
             <Text style={styles.buttonText}>Go back</Text>
           </Pressable>
-
-
       
         </ScrollView>
       </SafeAreaView>

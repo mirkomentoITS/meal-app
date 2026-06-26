@@ -1,41 +1,38 @@
 import React from 'react';
+
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+import { Avatar } from '../components/Avatar';
 
-function Avatar ({ uri }: { uri: string }) {
-
-  const [failed, setFailed] = React.useState(false);
-
-  return (
-    <View style={styles.avatar}>
-
-      { failed ? ( 
-        <Text style={{ textAlign: "center", lineHeight: 64 }}>?</Text>
-      ) : (
-        <Image
-          source={{ uri }}
-          style={{ width: 64, height: 64 }}
-          onError={() => (setFailed(true))}
-        />
-      )}
-
-    </View>
-  );
-}
+import { AuthContext } from '../context/AuthContext';
 
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }: any) {
+
+  const { user, logout } = React.useContext(AuthContext); 
+
+  function onLogout() {
+
+    setTimeout(() => {   
+      logout();
+      navigation.replace("Login");
+    }, 1000);
+  }
 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
        
-          <Avatar uri="https://picsum.photos/64"/>
+          <View style={styles.header}>
+            <Avatar uri={user.avatarUri}/>
+            <Text style={styles.name}>{user.name}</Text>
+          </View>
 
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>LOGUT</Text>
+          <Pressable style={styles.button}
+            onPress={onLogout}>
+            <Text style={styles.buttonText}>LOGOUT</Text>
           </Pressable>
 
         </View>
@@ -51,14 +48,16 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#882323",
   },
-  avatar: {
-    width: 64,
-    height: 64,
-    marginBottom: 20,
-    borderRadius: 32,
-    overflow: "hidden",
-    borderColor: "#fff",
-    borderWidth: 1,
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 25,    
+    gap: 18,
+  },
+  name: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#ffffff", 
   },
   button: {
     alignItems: "center",    

@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
@@ -76,16 +78,27 @@ export default function HomeScreen({ navigation }: any) {
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
 
-          <Text style={styles.title}>Piatti italiani</Text>
-    
+          <View style={styles.header}>
+            <Text style={styles.title}>Piatti italiani</Text>
+
+            <Pressable style={styles.profile}
+              onPress={() => navigation.navigate("Profile")}>
+              <MaterialIcons
+                name="account-circle" 
+                size={45}
+                color={"#fff"}
+              />
+            </Pressable>
+          </View>
+
           <FlatList contentContainerStyle={styles.list}
             data={plateData}
             keyExtractor={(plate) => plate.idMeal}
             renderItem={({ item : plate }) => 
               <PlateCard 
-                plate={plate} 
-                isFavorite={favorites.includes(plate.idMeal)}
+                plate={plate}
                 onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
+                isFavorite={favorites.includes(plate.idMeal)}
                 onToggleFav={() => toggleFavorite(plate.idMeal)}>
               </PlateCard> }>
           </FlatList>
@@ -106,11 +119,26 @@ const styles = StyleSheet.create({
   indicator: {
     marginTop: 250,
   },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 25,    
+  },
   title: {
-    marginBottom: 16,    
-    fontSize: 24,
+    fontSize: 27,
     fontWeight: "bold",
     color: "#ffffff", 
+  },
+  profile: {
+    width: 45,
+    height: 45,
+    marginRight: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  icon: {
+   color: "#fff",
   },
   list: {
     paddingBottom: 16,
