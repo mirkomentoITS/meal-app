@@ -6,7 +6,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { PlateCard, Plate } from '../components/PlateCard';
 import { loadPlates } from '../services/plate';
-import { loadFavoriteIds, saveFavoriteIds } from '../services/favorite';
+
+import { FavoriteContext } from '../context/FavoriteContext';
+
 
 
 export default function HomeScreen({ navigation }: any) {
@@ -16,12 +18,11 @@ export default function HomeScreen({ navigation }: any) {
 
   const [search, setSearch] = React.useState(""); 
 
-  const [favorites, setFavorites] = React.useState<string[]>([]);
+  const { favorites, toggleFavorite } = React.useContext(FavoriteContext);
 
 
   React.useEffect(() => {
     getPlates();
-    loadFavoriteIds().then(setFavorites);
   }, []);
 
 
@@ -76,18 +77,6 @@ export default function HomeScreen({ navigation }: any) {
     );
 
     setPlateData(filtered);
-  }
-
-
-  function toggleFavorite(idMeal: string) {
-    setFavorites((current) => {
-      const next = current.includes(idMeal)
-        ? current.filter(id => id !== idMeal)
-        : [...current, idMeal];
-
-      saveFavoriteIds(next);
-      return next;
-    });
   }
 
 

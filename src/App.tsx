@@ -10,6 +10,7 @@ import DetailsScreen from './screens/DetailsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 import { AuthProvider } from './context/AuthContext';
+import { FavoriteProvider } from './context/FavoriteContext';
 
 
 const linking = {
@@ -29,6 +30,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+    <FavoriteProvider>
       <NavigationContainer linking={linking}>
         <Stack.Navigator>
           <Stack.Screen 
@@ -53,6 +55,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+    </FavoriteProvider>  
     </AuthProvider>
   );
 }
