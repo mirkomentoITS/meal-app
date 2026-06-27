@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet} from 'react-native';
+import { View, ActivityIndicator, Text, Pressable, TextInput, FlatList, StyleSheet} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -13,6 +13,8 @@ export default function HomeScreen({ navigation }: any) {
 
   const [status, setStatus] = React.useState("idle"); 
   const [plateData, setPlateData] = React.useState<Plate[]>([]);
+
+  const [search, setSearch] = React.useState(""); 
 
   const [favorites, setFavorites] = React.useState<string[]>([]);
 
@@ -61,6 +63,22 @@ export default function HomeScreen({ navigation }: any) {
   }
 
 
+  async function searchPlate() {
+    const q = search.toLowerCase().trim();
+
+    if (!q) {
+      setPlateData(plateData);
+      return;
+    }
+
+    const filtered = plateData.filter(plate =>
+      plate.strMeal.toLowerCase().includes(q)
+    );
+
+    setPlateData(filtered);
+  }
+
+
   function toggleFavorite(idMeal: string) {
     setFavorites((current) => {
       const next = current.includes(idMeal)
@@ -90,6 +108,19 @@ export default function HomeScreen({ navigation }: any) {
               />
             </Pressable>
           </View>
+          
+          <View style={styles.search}>
+            <MaterialIcons name="search" size={22} color="#882323" />
+            <TextInput
+              value={search}
+              onChangeText={setSearch}
+              onSubmitEditing={searchPlate}
+              autoCapitalize="none"
+              placeholder="Cerca un piatto..."
+              placeholderTextColor="#666"
+              style={styles.textInput}
+            />
+          </View>
 
           <FlatList contentContainerStyle={styles.list}
             data={plateData}
@@ -114,6 +145,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    gap: 15,
     backgroundColor: "#882323",
   },
   indicator: {
@@ -123,7 +155,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 25,    
   },
   title: {
     fontSize: 27,
@@ -137,12 +168,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  icon: {
-   color: "#fff",
+  search: {
+    height: 48,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 13,
+    backgroundColor: "#ffffff",
+    borderRadius: 12,
+    paddingHorizontal: 12,
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 16,
+    color: "#000000",
   },
   list: {
     paddingBottom: 16,
-  },
+  },  
   retryButton: {
     width: 200,
     alignSelf: "center",
