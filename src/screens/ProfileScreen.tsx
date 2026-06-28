@@ -1,24 +1,52 @@
 import React from 'react';
 
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Avatar } from '../components/Avatar';
 
+import { PlateCard, Plate } from '../components/PlateCard';
+import { loadPlateById } from '../services/plate';
+
 import { AuthContext } from '../context/AuthContext';
+import { FavoriteContext } from '../context/FavoriteContext';
 
 
 export default function ProfileScreen({ navigation }: any) {
 
+  const [status, setStatus] = React.useState("idle");
+  const [plateFav, setPlateFav] = React.useState<Plate[]>([]);
+
   const { user, logout } = React.useContext(AuthContext); 
+  const { favorites } = React.useContext(FavoriteContext);
+
+
+  React.useEffect(() => {
+    getPlates();
+  }, [favorites]);
+  
+  
+  async function getPlates () {
+    setStatus("loading"); 
+    try {                                                                   // gestisci status
+      const favs = favorites.map((id : string) => loadPlateById(id));   // nome promises cambia
+      const data = await Promise.all(favs);
+      setPlateFav(data);
+      setTimeout(() => setStatus("success"), 1000);
+    } 
+    catch {
+      setStatus("error");
+    }
+  };
+
 
   function onLogout() {
-
     setTimeout(() => {   
       logout();
       navigation.replace("Login");
     }, 1000);
   }
+
 
   return (
     <SafeAreaProvider>
@@ -29,6 +57,18 @@ export default function ProfileScreen({ navigation }: any) {
             <Avatar uri={user.avatarUri}/>
             <Text style={styles.name}>{user.name}</Text>
           </View>
+          
+          <FlatList contentContainerStyle={styles.list}
+            data={plateFav}
+            keyExtractor={(plate) => plate.idMeal}
+            renderItem={({ item : plate }) => 
+              <PlateCard 
+                plate={plate}
+                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
+                isFavorite={true}
+                onToggleFav={() => {}}>
+              </PlateCard> }>
+          </FlatList>
 
           <Pressable style={styles.button}
             onPress={onLogout}>
@@ -59,6 +99,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#ffffff", 
   },
+  list: {
+    paddingBottom: 16,
+  }, 
   button: {
     alignItems: "center",    
     marginTop: 20,

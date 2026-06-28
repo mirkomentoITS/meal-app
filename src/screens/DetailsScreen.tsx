@@ -14,7 +14,12 @@ export default function DetailsScreen({ route, navigation }: any) {
   const [plate, setPlate] = React.useState<any>(null);
 
 
-  async function getPlate () {
+  React.useEffect(() => {
+    getPlate();
+  }, [id]);
+
+
+  async function getPlate() {
     setStatus("loading");
     try {
       const data = await loadPlateById(id);
@@ -26,10 +31,6 @@ export default function DetailsScreen({ route, navigation }: any) {
       setStatus("error");
     }
   };
-
-  React.useEffect(() => {
-    getPlate();
-  }, [id]);
 
 
   if (!id || typeof id !== "string") {

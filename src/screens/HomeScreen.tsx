@@ -38,6 +38,22 @@ export default function HomeScreen({ navigation }: any) {
     }
    }
 
+   
+  async function searchPlate() {
+    const q = search.toLowerCase().trim();
+
+    if (!q) {
+      setPlateData(plateData);
+      return;
+    }
+
+    const filtered = plateData.filter(plate =>
+      plate.strMeal.toLowerCase().includes(q)
+    );
+
+    setPlateData(filtered);
+  }
+
 
   if (status === "loading") {
     return (
@@ -61,22 +77,6 @@ export default function HomeScreen({ navigation }: any) {
         </Pressable>
       </View>
     );
-  }
-
-
-  async function searchPlate() {
-    const q = search.toLowerCase().trim();
-
-    if (!q) {
-      setPlateData(plateData);
-      return;
-    }
-
-    const filtered = plateData.filter(plate =>
-      plate.strMeal.toLowerCase().includes(q)
-    );
-
-    setPlateData(filtered);
   }
 
 

@@ -4,3 +4,5 @@ spiegare che il completamento del progetto
 Ho usato un altra organizzazione per le scherrmate ma rispettando
 comunque tutti i requisiti. Spiegare in che pagina il requisito è
 stato rispettato.
+
+// promis all --> aspetta che tutti i piatti arrivino

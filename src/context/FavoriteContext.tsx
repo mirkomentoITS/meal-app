@@ -15,7 +15,7 @@ export function FavoriteProvider({ children }: { children: ReactNode }) {
     loadFavoriteIds().then(setFavorites);
   }, []);
 
-  const toggleFavorite = (idMeal: string) => {
+  const toggleFavorite = (idMeal : string) => {
     setFavorites((current) => {
       const next = current.includes(idMeal)
         ? current.filter(id => id !== idMeal)
