@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as Linking from 'expo-linking';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -14,7 +15,7 @@ import { FavoriteProvider } from './context/FavoriteContext';
 
 
 const linking = {
-  prefixes: ["myapp://"],
+  prefixes: [Linking.createURL("/"), "myapp://"],
   config: {
     screens: {
       Login: "login",

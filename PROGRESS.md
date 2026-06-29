@@ -2,7 +2,7 @@
 
 **Studente:** Mirko Mento  
 **Repo:** https://github.com/mirkomentoITS/meal-app 
-**Ultimo aggiornamento:** 2026-06-24
+**Ultimo aggiornamento:** 2026-06-29
 
 
 ## Schermate implementate
@@ -31,4 +31,5 @@ Uno screenshot per lab **13–22** (come avete fatto per i lab **01–11**).
 ## Note
 
 - impostazioni 
+- responsive
 - notifiche

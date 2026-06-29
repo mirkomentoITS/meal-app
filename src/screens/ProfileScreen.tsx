@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Avatar } from '../components/Avatar';
 
-import { PlateCard, Plate } from '../components/PlateCard';
+import { PlateCardGrid, Plate } from '../components/PlateCardGrid';
 import { loadPlateById } from '../services/plate';
 
 import { AuthContext } from '../context/AuthContext';
@@ -55,19 +55,20 @@ export default function ProfileScreen({ navigation }: any) {
        
           <View style={styles.header}>
             <Avatar uri={user.avatarUri}/>
-            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.user}>{user.name}</Text>
           </View>
+
+          <Text style={styles.title}>Piatti italiani</Text>
           
-          <FlatList contentContainerStyle={styles.list}
+          <FlatList columnWrapperStyle={styles.list}
+            numColumns={2}
             data={plateFav}
             keyExtractor={(plate) => plate.idMeal}
             renderItem={({ item : plate }) => 
-              <PlateCard 
+              <PlateCardGrid
                 plate={plate}
-                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
-                isFavorite={true}
-                onToggleFav={() => {}}>
-              </PlateCard> }>
+                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}>
+              </PlateCardGrid> }>
           </FlatList>
 
           <Pressable style={styles.button}
@@ -94,20 +95,28 @@ const styles = StyleSheet.create({
     marginBottom: 25,    
     gap: 18,
   },
-  name: {
+  user: {
     fontSize: 22,
+    fontWeight: "bold",
+    color: "#fff", 
+  },
+  title: {
+    marginBottom: 5,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#ffffff", 
   },
   list: {
-    paddingBottom: 16,
-  }, 
+    justifyContent: "center",
+    alignContent: "center",
+    gap: 15,
+  },
   button: {
     alignItems: "center",    
     marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: "#f66d38",
+    backgroundColor: "#f74232",
     borderWidth: 1,
     borderRadius: 8,
     borderColor: "#fff"
