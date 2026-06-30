@@ -67,7 +67,7 @@ export default function ProfileScreen({ navigation }: any) {
             renderItem={({ item : plate }) => 
               <PlateCardGrid
                 plate={plate}
-                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}>
+                onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}>
               </PlateCardGrid> }>
           </FlatList>
 

@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
-import DetailsScreen from './screens/DetailsScreen';
+import DetailScreen from './screens/DetailScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 import { AuthProvider } from './context/AuthContext';
@@ -20,7 +20,7 @@ const linking = {
     screens: {
       Login: "login",
       Home: "home",
-      Details: "details/:id",
+      Detail: "detail/:id",
       Profile: "profile",
     }
   }
@@ -45,8 +45,8 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen 
-            name="Details" 
-            component={DetailsScreen} 
+            name="Detail" 
+            component={DetailScreen} 
             options={{ headerShown: false }}
           />
           <Stack.Screen 

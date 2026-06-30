@@ -10,7 +10,6 @@ import { loadPlates } from '../services/plate';
 import { FavoriteContext } from '../context/FavoriteContext';
 
 
-
 export default function HomeScreen({ navigation }: any) {
 
   const [status, setStatus] = React.useState("idle"); 
@@ -117,7 +116,7 @@ export default function HomeScreen({ navigation }: any) {
             renderItem={({ item : plate }) => 
               <PlateCard 
                 plate={plate}
-                onPress={() => navigation.navigate("Details", { id: plate.idMeal })}
+                onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}
                 isFavorite={favorites.includes(plate.idMeal)}
                 onToggleFav={() => toggleFavorite(plate.idMeal)}>
               </PlateCard> }>
