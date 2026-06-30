@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   btnDisabled: {
     height: 48,
-    width: 480,  
+    width: "100%",  
     paddingVertical: 12,
     justifyContent: "center",
     alignItems: "center",
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     height: 48,
-    width: 480,  
+    width: "100%",  
     paddingVertical: 12,
     justifyContent: "center",
     alignItems: "center",

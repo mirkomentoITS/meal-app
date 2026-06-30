@@ -15,7 +15,7 @@ import { FavoriteProvider } from './context/FavoriteContext';
 
 
 const linking = {
-  prefixes: [Linking.createURL("/"), "myapp://"],
+  prefixes: [Linking.createURL("/"), "meal-app://"],
   config: {
     screens: {
       Login: "login",
