@@ -24,7 +24,7 @@ const linking = {
       Home: "home",
       Detail: "detail/:id",
       Profile: "profile",
-      Settings: "settings",
+      Setting: "setting",
     }
   }
 }

@@ -17,7 +17,7 @@ interface PlateCardProps {
 }
 
 
-export function PlateCard ({ plate, onPress, isFavorite, onToggleFav }: PlateCardProps) {
+export function PlateCardList ({ plate, onPress, isFavorite, onToggleFav }: PlateCardProps) {
 
   return (
     <View style={styles.row}> 
