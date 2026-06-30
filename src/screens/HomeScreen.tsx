@@ -87,7 +87,7 @@ export default function HomeScreen({ navigation }: any) {
           <View style={styles.header}>
             <Text style={styles.title}>Piatti italiani</Text>
 
-            <Pressable style={styles.profile}
+            <Pressable style={styles.icon}
               onPress={() => navigation.navigate("Profile")}>
               <MaterialIcons
                 name="account-circle" 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#ffffff", 
   },
-  profile: {
+  icon: {
     width: 45,
     height: 45,
     marginRight: 15,

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { Avatar } from '../components/Avatar';
 
@@ -28,8 +29,8 @@ export default function ProfileScreen({ navigation }: any) {
   
   async function getPlates () {
     setStatus("loading"); 
-    try {                                                                   // gestisci status
-      const favs = favorites.map((id : string) => loadPlateById(id));   // nome promises cambia
+    try {                                                                   
+      const favs = favorites.map((id : string) => loadPlateById(id));  
       const data = await Promise.all(favs);
       setPlateFav(data);
       setTimeout(() => setStatus("success"), 1000);
@@ -79,6 +80,15 @@ export default function ProfileScreen({ navigation }: any) {
           <View style={styles.header}>
             <Avatar uri={user?.avatarUri}/>
             <Text style={styles.user}>{user?.name}</Text>
+            
+            <Pressable style={styles.icon}
+              onPress={() => navigation.navigate("Setting")}>
+              <MaterialIcons
+                name="settings" 
+                size={45}
+                color={"#fff"}
+              />
+            </Pressable>
           </View>
 
           <Text style={styles.title}>Piatti italiani</Text>
@@ -125,6 +135,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "#fff", 
+  },
+  icon: {
+    width: 45,
+    height: 45,    
+    justifyContent: "center",
+    alignItems: "center",    
+    marginLeft: 50,
+    marginRight: 15,
   },
   title: {
     marginBottom: 5,
