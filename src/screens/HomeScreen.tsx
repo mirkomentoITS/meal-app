@@ -4,7 +4,7 @@ import { View, ActivityIndicator, Text, Pressable, TextInput, FlatList, StyleShe
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { PlateCard, Plate } from '../components/PlateCard';
+import { PlateCardList, Plate } from '../components/PlateCardList';
 import { loadPlates } from '../services/plate';
 
 import { FavoriteContext } from '../context/FavoriteContext';
@@ -114,12 +114,12 @@ export default function HomeScreen({ navigation }: any) {
             data={plateData}
             keyExtractor={(plate) => plate.idMeal}
             renderItem={({ item : plate }) => 
-              <PlateCard 
+              <PlateCardList
                 plate={plate}
                 onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}
                 isFavorite={favorites.includes(plate.idMeal)}
                 onToggleFav={() => toggleFavorite(plate.idMeal)}>
-              </PlateCard> }>
+              </PlateCardList> }>
           </FlatList>
   
         </View>

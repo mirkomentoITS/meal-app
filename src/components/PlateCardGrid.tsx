@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: "47%",
     height: 180,
     marginBottom: 15,
-    backgroundColor: "#f66d38",
+    backgroundColor: "#c64646",
     borderWidth: 1,
     borderRadius: 15,
     overflow: "hidden",
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   textMeal: {
     margin: 5,
+    paddingHorizontal: 8,
     fontSize: 18,
     fontWeight: "400",
     color: "#ffffff", 

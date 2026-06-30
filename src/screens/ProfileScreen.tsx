@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }: any) {
   const [status, setStatus] = React.useState("idle");
   const [plateFav, setPlateFav] = React.useState<Plate[]>([]);
 
-  const { user, logout } = React.useContext(AuthContext); 
+  const { user } = React.useContext(AuthContext); 
   const { favorites } = React.useContext(FavoriteContext);
 
 
@@ -39,14 +39,6 @@ export default function ProfileScreen({ navigation }: any) {
       setStatus("error");
     }
   };
-
-
-  function onLogout() {
-    setTimeout(() => {   
-      logout();
-      navigation.replace("Login");
-    }, 1000);
-  }
 
 
   if (status === "loading") {
@@ -91,7 +83,7 @@ export default function ProfileScreen({ navigation }: any) {
             </Pressable>
           </View>
 
-          <Text style={styles.title}>Piatti italiani</Text>
+          <Text style={styles.title}>Piatti Preferiti</Text>
           
           <FlatList columnWrapperStyle={styles.list}
             numColumns={2}
@@ -103,11 +95,6 @@ export default function ProfileScreen({ navigation }: any) {
                 onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}>
               </PlateCardGrid> }>
           </FlatList>
-
-          <Pressable style={styles.button}
-            onPress={onLogout}>
-            <Text style={styles.buttonText}>LOGOUT</Text>
-          </Pressable>
 
         </View>
       </SafeAreaView>
@@ -132,7 +119,7 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   user: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: "bold",
     color: "#fff", 
   },
@@ -141,7 +128,7 @@ const styles = StyleSheet.create({
     height: 45,    
     justifyContent: "center",
     alignItems: "center",    
-    marginLeft: 50,
+    marginLeft: 32,
     marginRight: 15,
   },
   title: {
@@ -154,21 +141,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     gap: 15,
-  },
-  button: {
-    alignItems: "center",    
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    backgroundColor: "#f74232",
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: "#fff"
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontSize: 18,
-    fontWeight: "600",
   },
   retryButton: {
     width: 200,
