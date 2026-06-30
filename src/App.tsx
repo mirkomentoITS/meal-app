@@ -9,6 +9,8 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import DetailScreen from './screens/DetailScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import SettingScreen from './screens/SettingScreen';
+
 
 import { AuthProvider } from './context/AuthContext';
 import { FavoriteProvider } from './context/FavoriteContext';
@@ -52,6 +54,11 @@ export default function App() {
           <Stack.Screen 
             name="Profile" 
             component={ProfileScreen} 
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="Setting" 
+            component={SettingScreen} 
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

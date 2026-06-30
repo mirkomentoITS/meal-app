@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, Text, Pressable, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Avatar } from '../components/Avatar';
@@ -48,14 +48,37 @@ export default function ProfileScreen({ navigation }: any) {
   }
 
 
+  if (status === "loading") {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator style={styles.indicator}
+          size="large" 
+          color="#ffffff" 
+        />
+      </View>
+    );
+  }
+  
+  if (status === "error") {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.error}>Errore caricamento !</Text>
+        <Pressable style={styles.retryButton} onPress={() => getPlates()}>
+          <Text style={styles.retryText}>Riprova</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
        
           <View style={styles.header}>
-            <Avatar uri={user.avatarUri}/>
-            <Text style={styles.user}>{user.name}</Text>
+            <Avatar uri={user?.avatarUri}/>
+            <Text style={styles.user}>{user?.name}</Text>
           </View>
 
           <Text style={styles.title}>Piatti italiani</Text>
@@ -88,6 +111,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#882323",
+  },
+  indicator: {
+    marginTop: 250,
   },
   header: {
     flexDirection: "row",
@@ -125,5 +151,24 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 18,
     fontWeight: "600",
+  },
+  retryButton: {
+    width: 200,
+    alignSelf: "center",
+    alignItems: "center",    
+    marginTop: 16,
+    padding: 10,
+    backgroundColor: "#f66d38",
+    borderRadius: 8,
+  },
+  retryText: {
+    color: "#ffffff",
+    fontWeight: "600",
+  },
+  error: {
+    marginTop: 50,
+    color: "#ffffff",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
