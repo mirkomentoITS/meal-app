@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: "column",
     alignItems: "center",  
-    width: "47%",
+    flex: 1,
     height: 180,
     marginBottom: 15,
     backgroundColor: "#c64646",

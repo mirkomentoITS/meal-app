@@ -12,6 +12,8 @@ import { loadPlateById } from '../services/plate';
 import { AuthContext } from '../context/AuthContext';
 import { FavoriteContext } from '../context/FavoriteContext';
 
+import { useWindowDimensions } from "react-native";
+
 
 export default function ProfileScreen({ navigation }: any) {
 
@@ -20,6 +22,9 @@ export default function ProfileScreen({ navigation }: any) {
 
   const { user } = React.useContext(AuthContext); 
   const { favorites } = React.useContext(FavoriteContext);
+
+  const { width } = useWindowDimensions();
+  const isWide = width >= 475;
 
 
   React.useEffect(() => {
@@ -86,7 +91,8 @@ export default function ProfileScreen({ navigation }: any) {
           <Text style={styles.title}>Piatti Preferiti</Text>
           
           <FlatList columnWrapperStyle={styles.list}
-            numColumns={2}
+            key={isWide ? "wide" : "narrow"}
+            numColumns={isWide ? 3 : 2}
             data={plateFav}
             keyExtractor={(plate) => plate.idMeal}
             renderItem={({ item : plate }) => 
