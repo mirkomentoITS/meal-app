@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { AuthContext } from '../context/AuthContext';
 
+import { theme } from '../theme/token';
+
 
 export default function LoginScreen({ navigation }: any) {
 
@@ -58,6 +60,7 @@ export default function LoginScreen({ navigation }: any) {
             <Image
               style={styles.photo}   
               source={require('../assets/login-bg.jpg')}
+              accessibilityLabel="Italian meals app logo"
             />
           </View>
 
@@ -65,6 +68,7 @@ export default function LoginScreen({ navigation }: any) {
             <MaterialIcons style={styles.icon}
               name="menu-book" 
               size={50}
+              accessibilityLabel="Menu book icon"
             />
 
             <Text style={styles.title}>Welcome Back</Text>
@@ -75,6 +79,8 @@ export default function LoginScreen({ navigation }: any) {
               autoCapitalize="none"
               placeholder='Email'
               style={styles.dataInput} 
+              accessibilityLabel="Email input field"
+              accessible={true}
             />
 
             <Text style={styles.errorMessage}>
@@ -87,6 +93,8 @@ export default function LoginScreen({ navigation }: any) {
               autoCapitalize="none"
               placeholder='Password'
               style={styles.dataInput} 
+              accessibilityLabel="Password input field"
+              accessible={true}
             />
 
             <Text style={styles.errorMessage}>
@@ -95,7 +103,9 @@ export default function LoginScreen({ navigation }: any) {
 
             <Pressable 
               style={formOK ? styles.btn : styles.btnDisabled}
-              onPress={onLogin}>
+              onPress={onLogin}
+              accessibilityRole="button"
+              accessibilityLabel="Login button">
               <Text style={styles.buttonText}>LOGIN</Text>
             </Pressable>
  
@@ -133,81 +143,80 @@ const styles = StyleSheet.create({
   formWrapper: {
    flex: 1,
    marginTop: -70,
-   padding: 16,
-   gap: 16,
-   backgroundColor: "#882323",
+   padding: theme.spacing.md,
+   gap: theme.spacing.md,
+   backgroundColor: theme.colors.primary,
    borderTopLeftRadius: 70,
    borderTopRightRadius: 70,
   },
   icon: {
-   marginTop: 15,
+   marginTop: theme.spacing.md,
    alignSelf: "center",
-   color: "#fff",
+   color: theme.colors.text,
   },
   title: { 
-    marginBottom: 25,
+    marginBottom: theme.spacing.lg,
     alignSelf: "center",
-    fontSize: 28,
+    fontSize: theme.typography.xxl,
     fontWeight: "bold",
-    color: "#ffffff"
+    color: theme.colors.text
   },
   dataInput: {    
     height: 48, 
-    padding: 12,    
-    backgroundColor: "#ffffff", 
+    padding: theme.spacing.md,    
+    backgroundColor: theme.colors.text, 
     borderWidth: 1,
-    borderColor: "#f66d38",
-    borderRadius: 8,
-    fontSize: 16,
-    color: "#000000",
+    borderColor: theme.colors.accent,
+    borderRadius: theme.radius.xs,
+    fontSize: theme.typography.md,
   },
   errorMessage: {
     marginTop: -12,
-    fontSize: 12,
+    fontSize: theme.typography.xs,
     fontWeight: "500",
-    color: "#ffcccc",
+    color: theme.colors.error,
   },
   btnDisabled: {
     height: 48,
     width: "100%",  
-    paddingVertical: 12,
+    paddingVertical: theme.spacing.xs,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    borderRadius: 8,
-    backgroundColor: "#f66d38",
+    borderRadius: theme.radius.xs,
+    backgroundColor: theme.colors.accent,
     opacity: 0.5,
   },
   btn: {
     height: 48,
     width: "100%",  
-    paddingVertical: 12,
+    paddingVertical: theme.spacing.md,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    borderRadius: 8,
-    backgroundColor: "#f66d38",
+    borderRadius: theme.radius.xs,
+    backgroundColor: theme.colors.accent,
   },
   buttonText: {
     fontWeight: "600",
-    color: "#ffffff",
-    fontSize: 16,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,
   },
   loadingText: {
-    fontSize: 14,
-    color: "#ffeb3b",
+    fontSize: theme.typography.sm,
+    color: theme.colors.warning,
     textAlign: "center",
     fontWeight: "500",
   },
   successText: {
-    fontSize: 14,
-    color: "#4caf50",
+    fontSize: theme.typography.sm,
+    color: theme.colors.success,
     textAlign: "center",
     fontWeight: "600",
   },
   errorText: {
-    fontSize: 14,
-    color: "#ff8585",
+    fontSize: theme.typography.sm,
+    color: theme.colors.error,
     textAlign: "center",
     fontWeight: "600",
   },

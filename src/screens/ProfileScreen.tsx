@@ -14,6 +14,8 @@ import { FavoriteContext } from '../context/FavoriteContext';
 
 import { useWindowDimensions } from "react-native";
 
+import { theme } from '../theme/token';
+
 
 export default function ProfileScreen({ navigation }: any) {
 
@@ -79,7 +81,10 @@ export default function ProfileScreen({ navigation }: any) {
             <Text style={styles.user}>{user?.name}</Text>
             
             <Pressable style={styles.icon}
-              onPress={() => navigation.navigate("Setting")}>
+              onPress={() => navigation.navigate("Setting")}
+              accessibilityRole="button"
+              accessibilityLabel="Settings" 
+              >
               <MaterialIcons
                 name="settings" 
                 size={45}
@@ -99,7 +104,10 @@ export default function ProfileScreen({ navigation }: any) {
               <PlateCardGrid
                 plate={plate}
                 onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}>
-              </PlateCardGrid> }>
+              </PlateCardGrid> 
+            }
+            accessibilityLabel="Favorite meals grid"
+            accessible={true}>
           </FlatList>
 
         </View>
@@ -112,8 +120,8 @@ export default function ProfileScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: "#882323",
+    padding: theme.spacing.md,
+    backgroundColor: theme.colors.primary,
   },
   indicator: {
     marginTop: 250,
@@ -121,13 +129,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 25,    
-    gap: 18,
+    marginBottom: theme.spacing.lg,    
+    gap: theme.spacing.md,
   },
   user: {
-    fontSize: 25,
+    fontSize: theme.typography.xl,
     fontWeight: "bold",
-    color: "#fff", 
+    color: theme.colors.text, 
   },
   icon: {
     width: 45,
@@ -138,33 +146,33 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   title: {
-    marginBottom: 5,
-    fontSize: 18,
+    marginBottom: theme.spacing.xs,
+    fontSize: theme.typography.lg,
     fontWeight: "bold",
-    color: "#ffffff", 
+    color: theme.colors.text, 
   },
   list: {
     justifyContent: "center",
     alignContent: "center",
-    gap: 15,
+    gap: theme.spacing.md,
   },
   retryButton: {
     width: 200,
     alignSelf: "center",
     alignItems: "center",    
-    marginTop: 16,
-    padding: 10,
-    backgroundColor: "#f66d38",
-    borderRadius: 8,
+    marginTop: theme.spacing.md,
+    padding: theme.spacing.sm,
+    backgroundColor: theme.colors.accent,
+    borderRadius: theme.radius.xs,
   },
   retryText: {
-    color: "#ffffff",
+    color: theme.colors.text,
     fontWeight: "600",
   },
   error: {
-    marginTop: 50,
-    color: "#ffffff",
-    fontSize: 16,
+    marginTop: theme.spacing.xl,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,   
     textAlign: "center",
   },
 });

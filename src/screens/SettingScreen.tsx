@@ -8,6 +8,8 @@ import SettingRow from '../components/SettingRow';
 
 import { AuthContext } from '../context/AuthContext';
 
+import { theme } from '../theme/token';
+
 
 interface Settings {
   tema: boolean;
@@ -52,7 +54,9 @@ export default function SettingScreen({ navigation }: any) {
 
           <View style={styles.header}>
             <Pressable style={styles.icon}
-              onPress={() => navigation.navigate("Profile")}>
+              onPress={() => navigation.navigate("Profile")}
+              accessibilityRole="button"
+              accessibilityLabel="Back to profile">
               <MaterialIcons
                 name="arrow-circle-left" 
                 size={45}
@@ -71,7 +75,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.tema} 
-                  onValueChange={() => handleToggle("tema")}>
+                  onValueChange={() => handleToggle("tema")}
+                  accessibilityLabel="Theme toggle"
+                  accessible={true}>
                 </Switch>}
             />
             <SettingRow 
@@ -80,7 +86,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.suono} 
-                  onValueChange={() => handleToggle("suono")}>
+                  onValueChange={() => handleToggle("suono")}
+                  accessibilityLabel="Sound toggle"
+                  accessible={true}>
                 </Switch>}
             />
             <SettingRow 
@@ -89,7 +97,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.vibrazione} 
-                  onValueChange={() => handleToggle("vibrazione")}>
+                  onValueChange={() => handleToggle("vibrazione")}
+                  accessibilityLabel="Vibration toggle"
+                  accessible={true}>
                 </Switch>}
             />            
           </View>
@@ -102,7 +112,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.notifiche} 
-                  onValueChange={() => handleToggle("notifiche")}>
+                  onValueChange={() => handleToggle("notifiche")}
+                  accessibilityLabel="App Notification toggle"
+                  accessible={true}>
                 </Switch>}
             />
             <SettingRow 
@@ -111,7 +123,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.email} 
-                  onValueChange={() => handleToggle("email")}>
+                  onValueChange={() => handleToggle("email")}
+                  accessibilityLabel="Newsletter toggle"
+                  accessible={true}>
                 </Switch>}
             />    
           </View> 
@@ -125,7 +139,9 @@ export default function SettingScreen({ navigation }: any) {
               object={
                 <Switch
                   value={settings.dati} 
-                  onValueChange={() => handleToggle("dati")}>
+                  onValueChange={() => handleToggle("dati")}
+                  accessibilityLabel="Data collection toggle"
+                  accessible={true}>
                 </Switch>}
             />
           </View> 
@@ -133,12 +149,7 @@ export default function SettingScreen({ navigation }: any) {
           <Pressable style={styles.button}
             onPress={onLogout}>
             <Text style={styles.buttonText}>LOGOUT</Text>
-          </Pressable> 
-
-          <Pressable style={styles.button}
-            onPress={onLogout}>
-            <Text style={styles.buttonText}>LOGOUT</Text>
-          </Pressable>                   
+          </Pressable>                  
 
         </View>
       </SafeAreaView>
@@ -150,50 +161,50 @@ export default function SettingScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: "#882323",
+    padding: theme.spacing.md,
+    backgroundColor: theme.colors.primary,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 25,    
+    marginBottom: theme.spacing.lg,    
   },
   icon: {
     width: 45,
     height: 45,
-    marginRight: 15,
+    marginRight: theme.spacing.md,
     justifyContent: "center",
     alignItems: "center",
   },  
   title: {
-    fontSize: 25,
+    fontSize: theme.typography.xl,
     fontWeight: "bold",
-    color: "#ffffff", 
+    color: theme.colors.text, 
   },
   label: {
-    marginBottom: 5,
-    fontSize: 15,
+    marginBottom: theme.spacing.xs,
+    fontSize: theme.typography.md,
     fontWeight: "bold",
-    color: "#ffffff", 
+    color: theme.colors.text, 
   },
   group: {
-    marginBottom: 20,    
+    marginBottom: theme.spacing.md,    
     padding: 10,
-    backgroundColor: "#c64646",
-    borderRadius: 15,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
   },
   button: {
     alignItems: "center",    
-    marginTop: 20,
+    marginTop: theme.spacing.md,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: "#f66d38",
+    backgroundColor: theme.colors.accent,
     borderWidth: 1,
-    borderRadius: 8,
-    borderColor: "#fff"
+    borderRadius: theme.radius.xs,
+    borderColor: theme.colors.text
   },
   buttonText: {
-    color: "#ffffff",
+    color: theme.colors.text,
     fontSize: 18,
     fontWeight: "600",
   },

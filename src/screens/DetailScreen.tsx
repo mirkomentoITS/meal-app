@@ -5,6 +5,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { loadPlateById } from '../services/plate';
 
+import { theme } from '../theme/token';
+
 
 export default function DetailsScreen({ route, navigation }: any) {
 
@@ -92,7 +94,9 @@ export default function DetailsScreen({ route, navigation }: any) {
           <Text style={styles.instructionText}>{plate.strInstructions}</Text>
 
           <Pressable style={styles.button}
-            onPress={() => navigation.goBack()}>
+            onPress={() => navigation.goBack()}
+            accessibilityRole="button"
+            accessibilityLabel="Go back to home">
             <Text style={styles.buttonText}>Go back</Text>
           </Pressable>
       
@@ -106,74 +110,74 @@ export default function DetailsScreen({ route, navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: "#882323",
+    padding: theme.spacing.md,
+    backgroundColor: theme.colors.primary,
   },
   indicator: {
     marginTop: 250,
   },
   name: {
-    marginBottom: 16,
-    fontSize: 28,
+    marginBottom: theme.spacing.md,
+    fontSize: theme.typography.xxl,
     fontWeight: "bold",
-    color: "#ffffff",
+    color: theme.colors.text,
   },
   photo: {
     width: "100%",
     height: 250,
-    marginBottom: 20,    
-    borderRadius: 12,
+    marginBottom: theme.spacing.md,    
+    borderRadius: theme.radius.sm,
   },
   infoTitle: {
-    margin: 3,
-    fontSize: 18,
+    margin: theme.spacing.xs,
+    fontSize: theme.typography.lg,
     fontWeight: "bold",
-    color: "#fff",
+    color: theme.colors.text,
   },
   infoText: {
-    margin: 7,
-    fontSize: 16,
-    color: "#fab005"
+    margin: theme.spacing.sm,
+    fontSize: theme.typography.md,
+    color: theme.colors.accent
   },
   instructionTitle: {
-    marginTop: 16,
-    marginBottom: 8,    
-    fontSize: 18,
+    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.sm,    
+    fontSize: theme.typography.lg,
     fontWeight: "bold",
-    color: "#ffffff",
+    color: theme.colors.text,
   },
   instructionText: {
-    marginBottom: 24,    
-    fontSize: 14,
-    color: "#f0f0f0",
+    marginBottom: theme.spacing.lg,    
+    fontSize: theme.typography.sm,
+    color: theme.colors.muted,
     lineHeight: 22,
   },
   button: {
     alignItems: "center",    
-    marginTop: 20,
+    marginTop: theme.spacing.md,
     paddingVertical: 12,
-    paddingHorizontal: 16,
-    backgroundColor: "#f66d38",
-    borderRadius: 8,
+    paddingHorizontal: theme.spacing.md,
+    backgroundColor: theme.colors.accent,
+    borderRadius: theme.radius.xs,
   },
   buttonText: {
-    color: "#ffffff",
-    fontSize: 18,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,
     fontWeight: "600",
   },
   retryButton: {
     alignItems: "center",    
-    marginTop: 16,
-    padding: 10,
-    backgroundColor: "#f66d38",
-    borderRadius: 8,
+    marginTop: theme.spacing.md,
+    padding: theme.spacing.sm,
+    backgroundColor: theme.colors.accent,
+    borderRadius: theme.radius.xs,
   },
   retryText: {
-    color: "#ffffff",
+    color: theme.colors.text,
     fontWeight: "600",
   },
   error: {
-    color: "#ffffff",
-    fontSize: 16,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,
   },
 });

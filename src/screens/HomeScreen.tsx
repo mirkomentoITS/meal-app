@@ -9,6 +9,8 @@ import { loadPlates } from '../services/plate';
 
 import { FavoriteContext } from '../context/FavoriteContext';
 
+import { theme } from '../theme/token';
+
 
 export default function HomeScreen({ navigation }: any) {
 
@@ -88,7 +90,9 @@ export default function HomeScreen({ navigation }: any) {
             <Text style={styles.title}>Piatti italiani</Text>
 
             <Pressable style={styles.icon}
-              onPress={() => navigation.navigate("Profile")}>
+              onPress={() => navigation.navigate("Profile")}
+              accessibilityRole="button"
+              accessibilityLabel="Go to profile">
               <MaterialIcons
                 name="account-circle" 
                 size={45}
@@ -107,6 +111,8 @@ export default function HomeScreen({ navigation }: any) {
               placeholder="Cerca un piatto..."
               placeholderTextColor="#666"
               style={styles.textInput}
+              accessibilityLabel="Search meals input"
+              accessible={true}
             />
           </View>
 
@@ -119,7 +125,10 @@ export default function HomeScreen({ navigation }: any) {
                 onPress={() => navigation.navigate("Detail", { id: plate.idMeal })}
                 isFavorite={favorites.includes(plate.idMeal)}
                 onToggleFav={() => toggleFavorite(plate.idMeal)}>
-              </PlateCardList> }>
+              </PlateCardList> 
+            }
+            accessibilityLabel="Meals list"
+            accessible={true}>
           </FlatList>
   
         </View>
@@ -132,9 +141,9 @@ export default function HomeScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    gap: 15,
-    backgroundColor: "#882323",
+    padding: theme.spacing.md,
+    gap: theme.spacing.md,
+    backgroundColor: theme.colors.primary,
   },
   indicator: {
     marginTop: 250,
@@ -145,14 +154,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 27,
+    fontSize: theme.typography.xl,
     fontWeight: "bold",
-    color: "#ffffff", 
+    color: theme.colors.text, 
   },
   icon: {
     width: 45,
     height: 45,
-    marginRight: 15,
+    marginRight: theme.spacing.md,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -160,36 +169,35 @@ const styles = StyleSheet.create({
     height: 48,
     flexDirection: "row",
     alignItems: "center",
-    gap: 13,
-    backgroundColor: "#ffffff",
-    borderRadius: 12,
+    gap: theme.spacing.md,
+    backgroundColor: theme.colors.text,
+    borderRadius: theme.radius.sm,
     paddingHorizontal: 12,
   },
   textInput: {
     flex: 1,
-    fontSize: 16,
-    color: "#000000",
+    fontSize: theme.typography.md,
   },
   list: {
-    paddingBottom: 16,
+    paddingBottom: theme.spacing.md,
   },  
   retryButton: {
     width: 200,
     alignSelf: "center",
     alignItems: "center",    
-    marginTop: 16,
-    padding: 10,
-    backgroundColor: "#f66d38",
-    borderRadius: 8,
+    marginTop: theme.spacing.md,
+    padding: theme.spacing.sm,
+    backgroundColor: theme.colors.accent,
+    borderRadius: theme.radius.xs,
   },
   retryText: {
-    color: "#ffffff",
+    color: theme.colors.text,
     fontWeight: "600",
   },
   error: {
-    marginTop: 50,
-    color: "#ffffff",
-    fontSize: 16,
+    marginTop: theme.spacing.xl,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,   
     textAlign: "center",
   },
 });
