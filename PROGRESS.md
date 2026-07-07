@@ -2,7 +2,7 @@
 
 **Studente:** Mirko Mento  
 **Repo:** https://github.com/mirkomentoITS/meal-app 
-**Ultimo aggiornamento:** 2026-07-2
+**Ultimo aggiornamento:** 2026-07-7
 
 
 ## Schermate implementate
@@ -10,14 +10,13 @@
 | Schermata      | Stato   | Screenshot                                          |
 | -------------- | ------- | --------------------------------------------------- |
 | Login          |   ✅    | ![Login](./docs/screenshots/01-login.png)           |
-| Header profilo |   ✅    | ![Profilo](./docs/screenshots/02-profile.png)       |
-| Lista piatti   |   ✅    | ![Lista](./docs/screenshots/03-list.png)            |
-| Ricerca        |   ✅    | ![Ricerca](./docs/screenshots/04-search.png)        |
-| Dettaglio      |   ✅    | ![Dettaglio](./docs/screenshots/05-detail.png)      |
-| Preferiti      |   ✅    | ![Preferiti](./docs/screenshots/06-favorites.png)   |
-| Impostazioni   |   ✅    | ![Impostazioni](./docs/screenshots/07-settings.png) |
-| Errore + Retry |   ✅    | ![Errore](./docs/screenshots/08-error.png)          |
-| Deep link      |   ✅    | ![Deep link](./docs/screenshots/09-deeplink.png)    |
+| Lista piatti   |   ✅    | ![Lista](./docs/screenshots/02-home.png)            |
+| Ricerca        |   ✅    | ![Ricerca](./docs/screenshots/02-home.png)          |
+| Dettaglio      |   ✅    | ![Dettaglio](./docs/screenshots/03-detail.png)      |
+| Errore + Retry |   ✅    | ![Errore](./docs/screenshots/04-error.png)          |
+| Preferiti      |   ✅    | ![Preferiti](./docs/screenshots/05-profile.png)     |
+| Impostazioni   |   ✅    | ![Impostazioni](./docs/screenshots/06-settings.png) |
+| Deep link      |   ✅    | ![Deep link](./docs/screenshots/07-deeplink.png)    |
 
 
 ## Google Doc (lab 13–22)
@@ -30,5 +29,5 @@ Uno screenshot per lab **13–22** (come avete fatto per i lab **01–11**).
 
 ## Note
 
-- responsive
-- notifiche
+- gps opzionale (lab 20)
+- notifiche opzionali (lab 21)
