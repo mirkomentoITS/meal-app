@@ -52,6 +52,12 @@ export default function HomeScreen({ navigation }: any) {
       plate.strMeal.toLowerCase().includes(q)
     );
 
+    if (filtered.length === 0) {
+      setPlateData([]);
+      setStatus("empty");
+      return;
+    }
+
     setPlateData(filtered);
   }
 
@@ -116,6 +122,9 @@ export default function HomeScreen({ navigation }: any) {
             />
           </View>
 
+          {status === "empty" && 
+            <Text style={styles.emptyText}>Nessun piatto trovato ...</Text>}
+
           <FlatList contentContainerStyle={styles.list}
             data={plateData}
             keyExtractor={(plate) => plate.idMeal}
@@ -173,6 +182,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.text,
     borderRadius: theme.radius.sm,
     paddingHorizontal: 12,
+  },
+  emptyText: {
+    alignSelf: "center",
+    color: theme.colors.text,
+    fontSize: theme.typography.md,
   },
   textInput: {
     flex: 1,

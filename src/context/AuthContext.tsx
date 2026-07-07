@@ -21,7 +21,7 @@ export function AuthProvider({ children }: {children : ReactNode}) {
 
   React.useEffect(() => {
      loadUser().then(setUser);
-    }, []);
+  }, []);
 
   const login = (email: string, password: string): boolean => {
     const found = validateLogin(email, password);

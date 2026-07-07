@@ -65,7 +65,6 @@ export default function DetailsScreen({ route, navigation }: any) {
     );
   }
 
-  // metti preferiti
 
   return (
     <SafeAreaProvider>
