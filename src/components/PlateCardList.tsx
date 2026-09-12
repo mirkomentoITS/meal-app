@@ -25,7 +25,7 @@ export function PlateCardList ({ plate, onPress, isFavorite, onToggleFav }: Plat
       <Pressable style={styles.item} 
         onPress={onPress}>
         <Image style={styles.image} source={{ uri: plate.strMealThumb }} />
-        <Text style={styles.textMeal}>{plate.strMeal}</Text>
+        <Text style={styles.name}>{plate.strMeal}</Text>
       </Pressable>
 
       <Pressable style={styles.like}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginRight: 12,    
     borderRadius: 8,
   },
-  textMeal: {
+  name: {
     flex: 1,
     fontSize: 18,
     fontWeight: "400",

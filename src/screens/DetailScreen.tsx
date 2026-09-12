@@ -38,7 +38,7 @@ export default function DetailsScreen({ route, navigation }: any) {
   if (!id || typeof id !== "string") {
     return (
       <View style={styles.container}>
-        <Text style={styles.error}>Invalid route param</Text>
+        <Text style={styles.errorText}>Invalid route param</Text>
       </View>
     );
   }
@@ -57,7 +57,7 @@ export default function DetailsScreen({ route, navigation }: any) {
   if (status === "error" || !plate) {
     return (
       <View style={styles.container}>
-        <Text style={styles.error}>Errore nel caricamento</Text>
+        <Text style={styles.errorText}>Errore nel caricamento</Text>
         <Pressable style={styles.retryButton} onPress={() => getPlate()}>
           <Text style={styles.retryText}>Riprova</Text>
         </Pressable>
@@ -164,6 +164,10 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.md,
     fontWeight: "600",
   },
+  errorText: {
+    color: theme.colors.text,
+    fontSize: theme.typography.md,
+  },
   retryButton: {
     alignItems: "center",    
     marginTop: theme.spacing.md,
@@ -174,9 +178,5 @@ const styles = StyleSheet.create({
   retryText: {
     color: theme.colors.text,
     fontWeight: "600",
-  },
-  error: {
-    color: theme.colors.text,
-    fontSize: theme.typography.md,
   },
 });

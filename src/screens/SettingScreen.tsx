@@ -132,7 +132,6 @@ export default function SettingScreen({ navigation }: any) {
 
           <Text style={styles.label}>Altro</Text>
           <View style={styles.group}>
-
             <SettingRow 
               icon="thumbs-up-down"
               value="Raccolta Informazioni" 

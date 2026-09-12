@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, KeyboardAvoidingView, ScrollView, Text, TextInput, Pressable, Image, Platform, StyleSheet } from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView, Text, Pressable, Image, TextInput, Platform, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -60,7 +60,7 @@ export default function LoginScreen({ navigation }: any) {
             <Image
               style={styles.photo}   
               source={require('../assets/login-bg.jpg')}
-              accessibilityLabel="Italian meals app logo"
+              accessibilityLabel="Meals background photo"
             />
           </View>
 
@@ -90,6 +90,7 @@ export default function LoginScreen({ navigation }: any) {
             <TextInput 
               value={password}
               onChangeText={setPassword}
+              secureTextEntry={true}
               autoCapitalize="none"
               placeholder='Password'
               style={styles.dataInput} 

@@ -62,7 +62,7 @@ export default function ProfileScreen({ navigation }: any) {
   if (status === "error") {
     return (
       <View style={styles.container}>
-        <Text style={styles.error}>Errore caricamento !</Text>
+        <Text style={styles.errorText}>Errore caricamento !</Text>
         <Pressable style={styles.retryButton} onPress={() => getPlates()}>
           <Text style={styles.retryText}>Riprova</Text>
         </Pressable>
@@ -156,6 +156,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
     gap: theme.spacing.md,
   },
+  errorText: {
+    marginTop: theme.spacing.xl,
+    color: theme.colors.text,
+    fontSize: theme.typography.md,   
+    textAlign: "center",
+  },
   retryButton: {
     width: 200,
     alignSelf: "center",
@@ -168,11 +174,5 @@ const styles = StyleSheet.create({
   retryText: {
     color: theme.colors.text,
     fontWeight: "600",
-  },
-  error: {
-    marginTop: theme.spacing.xl,
-    color: theme.colors.text,
-    fontSize: theme.typography.md,   
-    textAlign: "center",
   },
 });

@@ -20,7 +20,7 @@ export function PlateCardGrid ({ plate, onPress }: PlateCardProps) {
     <Pressable style={styles.item} 
       onPress={onPress}>
       <Image style={styles.image} source={{ uri: plate.strMealThumb }} />
-      <Text style={styles.textMeal}>{plate.strMeal}</Text>
+      <Text style={styles.name}>{plate.strMeal}</Text>
     </Pressable>
   );
 }
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 180,
     marginBottom: 15,
-    backgroundColor: "#c64646",
+    backgroundColor: "#f66d38",
     borderWidth: 1,
     borderRadius: 15,
     overflow: "hidden",
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 120,
   },
-  textMeal: {
+  name: {
     margin: 5,
     paddingHorizontal: 8,
     fontSize: 18,
