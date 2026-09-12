@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     color: "#ffffff", 
   },
   like: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
     marginRight: 15,
     justifyContent: "center",
     alignItems: "center",

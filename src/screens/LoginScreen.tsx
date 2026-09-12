@@ -76,8 +76,8 @@ export default function LoginScreen({ navigation }: any) {
             <TextInput 
               value={email}
               onChangeText={setEmail}
+              placeholder='Email'              
               autoCapitalize="none"
-              placeholder='Email'
               style={styles.dataInput} 
               accessibilityLabel="Email input field"
               accessible={true}
@@ -90,9 +90,9 @@ export default function LoginScreen({ navigation }: any) {
             <TextInput 
               value={password}
               onChangeText={setPassword}
-              secureTextEntry={true}
               autoCapitalize="none"
               placeholder='Password'
+              secureTextEntry={true}
               style={styles.dataInput} 
               accessibilityLabel="Password input field"
               accessible={true}
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   dataInput: {    
     height: 48, 
-    padding: theme.spacing.md,    
+    paddingHorizontal: theme.spacing.md,
     backgroundColor: theme.colors.text, 
     borderWidth: 1,
     borderColor: theme.colors.accent,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   btn: {
     height: 48,
     width: "100%",  
-    paddingVertical: theme.spacing.md,
+    paddingVertical: theme.spacing.xs,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",

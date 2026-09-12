@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "meal-app",
+    "scheme": "mealapp",
     "slug": "meal-app",
     "version": "1.0.0",
     "orientation": "portrait",

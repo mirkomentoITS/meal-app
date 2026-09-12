@@ -35,7 +35,7 @@ export default function App() {
     <AuthProvider>
     <FavoriteProvider>
       <NavigationContainer linking={linking}>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{animation: "none"}}>
           <Stack.Screen 
             name="Login" 
             component={LoginScreen} 
