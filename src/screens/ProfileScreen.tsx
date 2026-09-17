@@ -83,8 +83,7 @@ export default function ProfileScreen({ navigation }: any) {
             <Pressable style={styles.icon}
               onPress={() => navigation.navigate("Setting")}
               accessibilityRole="button"
-              accessibilityLabel="Settings" 
-              >
+              accessibilityLabel="Settings">
               <MaterialIcons
                 name="settings" 
                 size={45}

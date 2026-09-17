@@ -1,23 +1,20 @@
 import React from 'react';
 
-import { View, ActivityIndicator, Text, Pressable, TextInput, FlatList, Modal, Linking, StyleSheet} from 'react-native';
+import { View, ActivityIndicator, Text, Pressable, TextInput, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { PlateCardList, Plate } from '../components/PlateCardList';
 import { loadPlates } from '../services/plate';
 
-import { locationRequest } from '../services/location';
-
 import { FavoriteContext } from '../context/FavoriteContext';
 
 import { theme } from '../theme/token';
 
 
-export default function HomeScreen({ navigation }: any) {
+export default function HomeScreen({ route, navigation }: any) {
 
-  type RequestStatus = "unknown"|"denied"|"granted";
-  const [permission, setPermission] = React.useState<RequestStatus>("unknown");
+  const area = route.params?.area;
 
   const [status, setStatus] = React.useState("idle"); 
   const [plateData, setPlateData] = React.useState<Plate[]>([]);
@@ -29,29 +26,22 @@ export default function HomeScreen({ navigation }: any) {
 
   React.useEffect(() => {
     getPlates();
-    askLocation();
-  }, []);
-
-
-  async function askLocation() {
-    const result = await locationRequest();
-    setPermission(result);
-  }
+  }, [area]);
 
 
   async function getPlates() {
     setStatus("loading");
     try {
-      const data = await loadPlates();    
+      const data = await loadPlates(area);    
       setPlateData(data)                  
       setTimeout(() => setStatus("success"), 1000);
     } 
     catch {
       setStatus("error");          
     }
-   }
+  }
 
-   
+
   async function searchPlate() {
     const q = search.toLowerCase().trim();
 
@@ -151,56 +141,6 @@ export default function HomeScreen({ navigation }: any) {
             accessibilityLabel="Meals list"
             accessible={true}>
           </FlatList>
-
-           
-          <Modal
-            visible={permission !== "granted"}
-            transparent
-            animationType="fade"
-            statusBarTranslucent
-          >
-            <View style={styles.modalOverlay}>
-            <View style={styles.modalCard}>
-
-              <MaterialIcons
-                name="location-on"
-                size={48}
-                color="#f66d38"
-              />
-              <Text style={styles.permissionTitle}>
-                Posizione
-              </Text>
-
-              {permission === "unknown" && (
-                <>
-                  <Text style={styles.permissionText}>
-                    È necessario il permesso per accedere alla posizione.
-                  </Text>
-                  <ActivityIndicator
-                    style={styles.permissionLoader}
-                    size="small"
-                  />
-                  <Text style={styles.permissionHint}>
-                    Attendo la tua scelta...
-                  </Text>
-                </>
-              )}
-
-              {permission === "denied" && (
-                <>
-                  <Text style={styles.permissionText}>
-                    Il permesso è stato negato. Modifica le impostazioni. 
-                  </Text>
-                  <Pressable
-                    style={styles.permissionButton}
-                    onPress={() => Linking.openSettings()}>
-                    <Text style={styles.permissionButtonText}>Impostazioni</Text>
-                  </Pressable>
-                </>
-              )}
-            </View>
-            </View>
-          </Modal>
   
         </View>
       </SafeAreaView>
@@ -240,18 +180,19 @@ const styles = StyleSheet.create({
     height: 48,
     flexDirection: "row",
     alignItems: "center",
+    paddingHorizontal: 12,
     gap: theme.spacing.md,
     backgroundColor: theme.colors.text,
     borderRadius: theme.radius.sm,
-    paddingHorizontal: 12,
-  },
-  emptyText: {
-    alignSelf: "center",
-    color: theme.colors.text,
-    fontSize: theme.typography.md,
   },
   textInput: {
     flex: 1,
+    height: "100%",
+    fontSize: theme.typography.md,
+  },  
+  emptyText: {
+    alignSelf: "center",
+    color: theme.colors.text,
     fontSize: theme.typography.md,
   },
   list: {
@@ -275,53 +216,5 @@ const styles = StyleSheet.create({
   retryText: {
     color: theme.colors.text,
     fontWeight: "600",
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",      
-    padding: theme.spacing.lg,
-    backgroundColor: "rgba(0, 0, 0, 0.55)",
-  },
-  modalCard: {
-    width: "100%",
-    maxWidth: 360,
-    alignItems: "center",      
-    padding: theme.spacing.xl,  
-    gap: theme.spacing.md,    
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.radius.md,
-  },
-  permissionTitle: {
-    fontSize: theme.typography.xl,
-    fontWeight: "bold",
-    color: theme.colors.text,
-  },
-  permissionText: {
-    fontSize: theme.typography.md,
-    color: theme.colors.text,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  permissionLoader: {
-    marginTop: theme.spacing.sm,
-  },
-  permissionHint: {
-    fontSize: theme.typography.sm,
-    color: theme.colors.text,
-    opacity: 0.8,
-  },
-  permissionButton: {
-    width: "100%",
-    alignItems: "center",    
-    marginTop: theme.spacing.sm,
-    padding: theme.spacing.sm,
-    backgroundColor: theme.colors.accent,
-    borderRadius: theme.radius.xs,
-  },
-  permissionButtonText: {
-    color: theme.colors.text,
-    fontWeight: "600",
-    fontSize: theme.typography.md,
   },
 });

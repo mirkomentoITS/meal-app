@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, Pressable, Switch, StyleSheet} from 'react-native';
+import { View, Text, Pressable, Switch, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 

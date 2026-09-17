@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }: any) {
     setTimeout(() => {   
       if (userOK) {
         setStatus("success");
-        navigation.navigate("Home");
+        navigation.navigate("Location");
       } 
       else {
         setStatus("error");

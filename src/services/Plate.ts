@@ -1,9 +1,9 @@
 const url = 'https://www.themealdb.com/api/json/v1/1';
 
 
-export async function loadPlates() {
+export async function loadPlates(id: string) {
 
-  const res = await fetch(`${url}/filter.php?a=italian`);
+  const res = await fetch(`${url}/filter.php?a=${id}`);
 
   if (!res.ok) throw new Error("Request failed");
 

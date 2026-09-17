@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import LoginScreen from './screens/LoginScreen';
+import LocationScreen from './screens/LocationScreen';
 import HomeScreen from './screens/HomeScreen';
 import DetailScreen from './screens/DetailScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -20,7 +21,8 @@ const linking = {
   config: {
     screens: {
       Login: "login",
-      Home: "home",
+      Location: "location",
+      Home: "home/:area",
       Detail: "detail/:id",
       Profile: "profile",
       Setting: "setting",
@@ -41,6 +43,11 @@ export default function App() {
             component={LoginScreen} 
             options={{ headerShown: false }}
           />
+          <Stack.Screen 
+            name="Location" 
+            component={LocationScreen} 
+            options={{ headerShown: false }}
+          />          
           <Stack.Screen 
             name="Home" 
             component={HomeScreen} 

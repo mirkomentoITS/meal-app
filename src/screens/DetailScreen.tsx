@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, ScrollView, ActivityIndicator, Text, Image, Pressable, StyleSheet} from 'react-native';
+import { View, ScrollView, ActivityIndicator, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { loadPlateById } from '../services/plate';
@@ -32,7 +32,7 @@ export default function DetailsScreen({ route, navigation }: any) {
       setPlate(null);
       setStatus("error");
     }
-  };
+  }
 
 
   if (!id || typeof id !== "string") {
