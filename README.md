@@ -1,4 +1,4 @@
-# 🍝 Italian Meals App
+# 🍝 Meals App
 
 <div align="center">
 
@@ -9,7 +9,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 
-**Una moderna applicazione mobile per scoprire e collezionare ricette italiane autentiche.**
+**Una moderna applicazione mobile per scoprire e collezionare ricette da tutti i paesi.**
 
 [Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Architettura](#-architettura) • [Licenza](#-licenza)
 
@@ -19,7 +19,7 @@
 
 ## 📱 Overview
 
-**Italian Meals App** è un'applicazione React Native production-ready che consente agli utenti di esplorare, cercare e salvare ricette italiane. L'app dimostra best practices moderne di sviluppo mobile, includendo state management robusto, persistenza dati, accessibilità e responsive design.
+**Meals App** è un'applicazione React Native production-ready che consente agli utenti di esplorare, cercare e salvare ricette di tutto il mondo. L'app dimostra best practices moderne di sviluppo mobile, includendo state management robusto, persistenza dati, accessibilità e responsive design.
 
 Sviluppato come **progetto accademico di eccellenza**, con focus su:
 - ✨ User Experience intuitiva
@@ -40,7 +40,7 @@ Sviluppato come **progetto accademico di eccellenza**, con focus su:
 - Logout con cleanup dello stato
 
 ### 🍽️ Esplorazione Ricette
-- Lista dinamica di piatti italiani da **TheMealDB API**
+- Lista dinamica di piatti da **TheMealDB API**
 - Ricerca real-time con filtro controllato
 - Dettagli completi: ingredienti, istruzioni, categoria, area geografica
 - Loading states e error handling robusto
@@ -101,11 +101,13 @@ meal-app/
 ├── src/
 │   ├── screens/                 # Schermate principali
 │   │   ├── LoginScreen.tsx
+│   │   ├── LocationScreen.tsx
 │   │   ├── HomeScreen.tsx
 │   │   ├── DetailScreen.tsx
 │   │   ├── ProfileScreen.tsx
 │   │   └── SettingScreen.tsx
 │   ├── components/              # Componenti riutilizzabili
+│   │   ├── CountryCardList.tsx
 │   │   ├── PlateCardGrid.tsx
 │   │   ├── PlateCardList.tsx
 │   │   ├── Avatar.tsx
@@ -115,8 +117,12 @@ meal-app/
 │   │   └── FavoriteContext.tsx
 │   ├── services/                # Logica di business
 │   │   ├── auth.ts
+│   │   ├── user.ts
+│   │   ├── location.ts
 │   │   ├── plate.ts
 │   │   └── favorite.ts
+│   ├── services/               
+│   │   └── countries.ts
 │   └── App.tsx                  # Entry point
 ├── assets/                       # Risorse statiche
 ├── package.json
@@ -193,9 +199,9 @@ Usa uno di questi account per il login:
 
 ### TheMealDB Endpoints
 
-**Get Italian Meals:**
+**Get Meals:**
 ```http
-GET https://www.themealdb.com/api/json/v1/1/filter.php?a=Italian
+GET https://www.themealdb.com/api/json/v1/1/filter.php?a={area}
 ```
 
 **Get Meal Details:**
@@ -243,14 +249,14 @@ La app è robusta e gestisce gracefully:
 |----|---------|-------------|
 | 1️⃣ | Login con 3 mock users | ✅ Completo |
 | 2️⃣ | Avatar + nome profilo | ✅ In ProfileScreen |
-| 3️⃣ | Lista piatti italiani | ✅ Da TheMealDB |
-| 4️⃣ | Ricerca/Filter controllato | ✅ In HomeScreen |
-| 5️⃣ | Dettaglio ricetta | ✅ Completo |
-| 6️⃣ | Favoriti + AsyncStorage | ✅ Persistito |
-| 7️⃣ | Settings + Logout | ✅ Con toggle |
-| 8️⃣ | Error state + Retry | ✅ In tutte le schermate |
+| 3️⃣ | Lista Peasi + GPS | ✅ In LocationScreen |
+| 4️⃣ | Lista piatti | ✅ Da TheMealDB |
+| 5️⃣ | Ricerca/Filter controllato | ✅ In HomeScreen |
+| 6️⃣ | Dettaglio ricetta | ✅ Completo |
+| 7️⃣ | Favoriti + AsyncStorage | ✅ Persistito |
+| 8️⃣ | Settings + Logout | ✅ Con toggle |
 | 9️⃣ | Accessibilità (min 2) | ✅ 7+ features |
-| 🔟 | Deep Linking | ✅ Testabile |
+| 🔟 | Deep Linking | ✅ Testabile |8️⃣
 
 ---
 
@@ -263,6 +269,7 @@ Questo progetto dimostra l'applicazione pratica di:
 - **Async/Await** - API calls con error handling
 - **State Management** - Context API patterns
 - **Local Storage** - Persistenza con AsyncStorage
+- **Location Request** - Posizione GPS dispositivo
 - **Navigation** - Stack & Deep Linking
 - **Responsive Design** - useWindowDimensions
 - **Accessibilità** - WCAG 2.1 compliance
