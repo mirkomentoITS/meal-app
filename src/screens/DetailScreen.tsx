@@ -68,7 +68,7 @@ export default function DetailsScreen({ route, navigation }: any) {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView  style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={styles.container}>
 
           <Text style={styles.name}>{plate.strMeal}</Text>

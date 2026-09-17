@@ -18,7 +18,6 @@ interface CountryCardProps {
 export function CountryCardList ({ country, onPress }: CountryCardProps) {
 
   return (
-
     <Pressable style={styles.item} 
       onPress={onPress}>
       <CountryFlag 
@@ -32,7 +31,6 @@ export function CountryCardList ({ country, onPress }: CountryCardProps) {
         color="#fff"
       />
     </Pressable>
-
   );
 }
 

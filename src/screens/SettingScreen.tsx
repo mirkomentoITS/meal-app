@@ -34,7 +34,7 @@ export default function SettingScreen({ navigation }: any) {
 
   const handleToggle = (key: keyof Settings) => {
     setSettings(prev => ({ ...prev, [key]: !prev[key] }));
-  }; 
+  }
 
 
   const { logout } = React.useContext(AuthContext); 
@@ -171,9 +171,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 45,
     height: 45,
-    marginRight: theme.spacing.md,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center",    
+    marginRight: theme.spacing.md,
   },  
   title: {
     fontSize: theme.typography.xl,

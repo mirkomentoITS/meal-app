@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
   like: {
     width: 35,
     height: 35,
-    marginRight: 15,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center",    
+    marginRight: 15,
   }
 });

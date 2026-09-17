@@ -27,10 +27,10 @@ export function PlateCardGrid ({ plate, onPress }: PlateCardProps) {
 
 const styles = StyleSheet.create({
   item: {
+    height: 180, 
+    flex: 1,       
     flexDirection: "column",
     alignItems: "center",  
-    flex: 1,
-    height: 180,
     marginBottom: 15,
     backgroundColor: "#f66d38",
     borderWidth: 1,

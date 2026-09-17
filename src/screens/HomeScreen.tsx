@@ -172,9 +172,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 45,
     height: 45,
-    marginRight: theme.spacing.md,
     justifyContent: "center",
     alignItems: "center",
+    marginRight: theme.spacing.md,
   },
   search: {
     height: 48,
@@ -200,21 +200,21 @@ const styles = StyleSheet.create({
   },  
   errorText: {
     marginTop: theme.spacing.xl,
-    color: theme.colors.text,
     fontSize: theme.typography.md,   
-    textAlign: "center",
+    textAlign: "center",    
+    color: theme.colors.text,
   },
   retryButton: {
     width: 200,
+    alignSelf: "center",
+    alignItems: "center",
     marginTop: theme.spacing.md,
     padding: theme.spacing.sm,
-    alignSelf: "center",
-    alignItems: "center",    
     backgroundColor: theme.colors.accent,
     borderRadius: theme.radius.xs,
   },
   retryText: {
-    color: theme.colors.text,
     fontWeight: "600",
+    color: theme.colors.text,
   },
 });

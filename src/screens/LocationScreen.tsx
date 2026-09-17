@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   }, 
   positionButton: {
     flexDirection: "row",
-    alignItems: "center",    
+    alignItems: "center",
     marginTop: theme.spacing.md,
     marginBottom: theme.spacing.md,
     paddingVertical: 12,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     marginRight: theme.spacing.sm
   },
   iconAim: {
-   marginLeft: "auto"
+    marginLeft: "auto"
   },
   search: {
     height: 40,
