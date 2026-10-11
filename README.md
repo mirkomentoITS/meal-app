@@ -11,17 +11,15 @@
 
 **Una moderna applicazione mobile per scoprire e collezionare ricette da tutti i paesi.**
 
-[Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Architettura](#-architettura) • [Licenza](#-licenza)
-
 </div>
 
 ---
 
 ## 📱 Overview
 
-**Meals App** è un'applicazione React Native production-ready che consente agli utenti di esplorare, cercare e salvare ricette di tutto il mondo. L'app dimostra best practices moderne di sviluppo mobile, includendo state management robusto, persistenza dati, accessibilità e responsive design.
+**Meals App** è un'applicazione React Native che consente agli utenti di esplorare, cercare e salvare ricette di tutto il mondo. 
 
-Sviluppato come **progetto accademico di eccellenza**, con focus su:
+Sviluppato come **progetto accademico**, con focus su:
 - ✨ User Experience intuitiva
 - 🏗️ Architettura scalabile
 - ♿ Accessibilità (WCAG 2.1)
@@ -31,7 +29,7 @@ Sviluppato come **progetto accademico di eccellenza**, con focus su:
 
 ---
 
-## ✨ Features
+## ✨ Funzionalità
 
 ### 🔑 Autenticazione
 - Login sicuro con validazione email/password
@@ -73,12 +71,11 @@ Sviluppato come **progetto accademico di eccellenza**, con focus su:
 
 ## 🏗️ Architettura
 
-### State Management: Context API
+### Gestione Stato: Context API
 
 **Perché Context API?**
 - ✅ Zero dipendenze aggiuntive
 - ✅ Nativo a React - allineato ai principi fondamentali
-- ✅ Separazione clean tra domande (Auth vs Favorites)
 - ✅ Performance adeguata per stato "piccolo-medio"
 - ✅ Facilmente migrabile verso Redux se necessario
 
@@ -131,7 +128,7 @@ meal-app/
 
 ---
 
-## 📊 Stack Tecnologico
+## 📊 Stack
 
 | Categoria | Tecnologie |
 |-----------|-----------|
@@ -147,7 +144,7 @@ meal-app/
 
 ## 🚀 Quick Start
 
-### Prerequisiti
+### Requisiti
 ```bash
 # Richiede Node.js LTS 18.x+
 node --version    # v18.x o superiore
@@ -157,7 +154,7 @@ npm --version     # 9.x o superiore
 ### Installazione
 
 ```bash
-# 1. Clone il repository
+# 1. Clone repository
 git clone https://github.com/mirkomentoITS/meal-app.git
 cd meal-app
 
@@ -183,7 +180,7 @@ Scannerizza il QR code con l'app Expo Go
 
 ---
 
-## 🔐 Test Credentials
+## 🔐 Test Credenziali
 
 Usa uno di questi account per il login:
 
@@ -195,9 +192,9 @@ Usa uno di questi account per il login:
 
 ---
 
-## 🌐 API Documentation
+## 🌐 API Docs
 
-### TheMealDB Endpoints
+### TheMealDB Endpoint
 
 **Get Meals:**
 ```http
@@ -229,7 +226,7 @@ meal-app://detail/52772
 
 ## 🛡️ Edge Cases Gestiti
 
-La app è robusta e gestisce gracefully:
+La app gestisce:
 
 ✅ **Errori di rete** - Loading state + retry button  
 ✅ **Login fallito** - Validazione client + feedback dinamico  
@@ -241,7 +238,7 @@ La app è robusta e gestisce gracefully:
 
 ---
 
-## 📦 Features Implementate
+## 📦 Funzionalità Implementate
 
 ### Requisiti Obbligatori (10/10) ✅
 
@@ -281,18 +278,6 @@ Questo progetto dimostra l'applicazione pratica di:
 ## 📸 Screenshots
 
 Vedi tutti gli screenshot dei lab 13-22 nel [Google Doc](https://docs.google.com/document/d/1RXdJJVh4GlMYAngYksM9MLcUvdgkYoO3lizdgMCK36Y/edit)
-
----
-
-## 🤝 Contribuire
-
-Per segnalare bug o suggerire miglioramenti:
-
-1. Fork il repository
-2. Crea un branch feature (`git checkout -b feature/AmazingFeature`)
-3. Commit le modifiche (`git commit -m 'Add AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
 
 ---
 
